@@ -1,10 +1,10 @@
 <?php 
     $page_title = "Dashboard";
-    include "require/head.php"; 
+    require "require/head.php"; 
 ?>
 </head>
 <body>
-    <?php include "require/header.php" ?>
+    <?php require "require/header.php" ?>
     <div class="body_wrapper">
         <h2 class="page_title">The Dashboard</h2>
         <p>The dashboard is where you'll find relevant information you'll need to see first thing in the morning.</p>
