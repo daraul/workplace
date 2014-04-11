@@ -1,4 +1,4 @@
 <div id="header">
     <?php require ("images/logo.svg");
-    require("includes/menu.php"); ?>
+    require ("require/menu.php"); ?>
 </div>
