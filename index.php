@@ -9,7 +9,7 @@
         <h2 class="page_title">The Dashboard</h2>
         <p>The dashboard is where you'll find relevant information you'll need to see first thing in the morning.</p>
         
-        <?php require "includes/todotable.php"; ?>
+        <?php require "tables/todotable.php"; ?>
     </div>
     <footer>
         <?php require "includes/footer.php" ?>
