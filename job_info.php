@@ -18,7 +18,7 @@
         <?php if(isset($job_id)){
             echo "<h2>\"" . $jobtitle[JobTitle] . "\" job summary</h2>
             <h3>Time entries: </h3>";
-            require "includes/timeentrytable.php";
+            require "tables/time_entries.php";
             echo "<a href=\"new_timeentry.php?key=" . $job_id . "\"><input type=\"button\" value=\"Add time entry\"></a>
             <h3>Job information </h3>
             <p>You can edit the job's information here: </p>";
