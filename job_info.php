@@ -1,6 +1,6 @@
 <?php
     $page_title = "Job information";
-    require "includes/head.php";
+    require "require/head.php";
     $con_select = new mysqli("localhost","employee","1234","workplace");
     if(mysqli_connect_errno()){
         echo "Failed to connect to database. " . mysqli_connect_error();
@@ -11,7 +11,7 @@
 ?>
 </head>
 <body>
-    <?php require "includes/header.php" ?>
+    <?php require "require/header.php" ?>
     <div class="body_wrapper">
         
         <!-- Start the table below. This isn't hard. -->
