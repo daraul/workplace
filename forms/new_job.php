@@ -1,3 +1,5 @@
+<link id="add_job_css" class="form_css" rel="stylesheet" href="css/forms.css" />
+
 <?php //Form validation
         
     //define variables to set to empty including the error message variables:
