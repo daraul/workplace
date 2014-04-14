@@ -128,39 +128,6 @@ p ,tr, td, a {
     max-width: 480px;
 }
 
-.add_info label {
-    font-family: 'Roboto', sans-serif;
-    color: rgb(0, 124, 206);
-    font-weight: bold;
-    display: block;
-    padding-top: 25px;
-    vertical-align: top;
-}
-
-.add_info input[type="text"], .add_info label textarea , .add_info label select, .add_info label input[type="datetime-local"] {
-    border: 2px solid rgb(200, 200, 200);
-    border-radius: 4px;
-    background-color: rgb(220, 220, 220);
-    padding: 5px;
-}
-
-.add_info label:first-child {
-    padding-top: 0;
-}
-
-.add_info label input[type="text"] {
-    width: 100%;
-}
-
-.add_info label select {
-    width: 100%;
-}
-
-.add_info label textarea {
-    height: 120px;
-    width: 100%;
-}
-
 footer {
     float: left;
     position: fixed;
