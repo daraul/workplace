@@ -7,7 +7,7 @@
     <?php require "require/header.php" ?>
     <div class="body_wrapper">
         <h2 class="page_title">Clients</h2>
-        <?php require "tables/client_table.php" ?>
+        <?php require "tables/clients.php" ?>
     </div>
 
     <footer>
