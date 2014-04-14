@@ -1,17 +1,17 @@
 <?php 
     $page_title = "New Time entry";
-    require "includes/head.php";
+    require "require/head.php";
     $job_id = $_GET["key"];
 ?>
 </head>
     <body>
-        <?php require "includes/header.php" ?>
+        <?php require "require/header.php" ?>
         <div class="body_wrapper">
             <h2 class="page_title">Add new time entry!</h2>
-            <?php require "includes/newtimeentry.php" ?>
+            <?php require "forms/new_timeentry.php" ?>
         </div>
         <footer>
-            <?php require "includes/footer.php" ?>
+            <?php require "require/footer.php" ?>
         </footer>
     </body>
     <?php require "js/basic_dependencies.php" ?>
