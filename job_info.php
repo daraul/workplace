@@ -1,6 +1,7 @@
 <?php
     $page_title = "Job information";
     require "require/head.php";
+    require "require/db_connection.php";
     $con_select = new mysqli($db_host,$user_employee,$user_employee_pw,"workplace");
     if(mysqli_connect_errno()){
         echo "Failed to connect to database. " . mysqli_connect_error();
