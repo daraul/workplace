@@ -1,5 +1,6 @@
 <?php 
-    $clients_con = new mysqli("localhost","employee","1234","workplace");
+    require_once "require/db_connection.php";
+    $clients_con = new mysqli($db_host, $user_employee, $user_employee_pw,"workplace");
     if(mysqli_connect_errno()){
         echo "Failed to connect to database. " . mysqli_connect_error();
     }
