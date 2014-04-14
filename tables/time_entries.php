@@ -1,6 +1,7 @@
 <?php
     $job_id = $_GET["key"];
-    $timentry_con = new mysqli("localhost","employee","1234","workplace");
+    require_once "require/db_connection.php";
+    $timentry_con = new mysqli($db_host, $user_employee, $user_employee_pw,"workplace");
     //Time entries
     $entries = mysqli_query($timentry_con, "SELECT * FROM Time_Entries WHERE JobID=" . $job_id);
 ?>
