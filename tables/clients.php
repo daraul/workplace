@@ -5,6 +5,9 @@
     }
     $clients = mysqli_query($clients_con, "SELECT * FROM Clients");
 ?>
+
+<link rel="stylesheet" type="text/css" id="time_entries_css" class="table_css" href="css/tables.css" />
+
 <table class="info_table" border="1">
 <tr>
     <th>Client ID</th>
