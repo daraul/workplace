@@ -6,6 +6,7 @@
     $worktodo = mysqli_query($todo_con,"SELECT * FROM worktodo WHERE currentStatus != 'Complete' ORDER BY Priority, currentStatus, JobTitle");
 ?>
 
+<link rel="stylesheet" type="text/css" id="todo_css" class="table_css" href="css/tables.css" />
 
 <table border="1" class="info_table" id="dashboard_table">
     <tr>
