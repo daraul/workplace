@@ -1,6 +1,6 @@
 <?php
     $page_title = "New job";
-    require "includes/head.php";
+    require "require/head.php";
 ?>
     <script>
         $(function() {
