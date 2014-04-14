@@ -1,5 +1,5 @@
 <ul id="main_menu">
-    <li><a href="workplace.php" title="Home page" alt="Head to the homepage. You'll have to log in again, though">Home</a></li>
+    <li><a href="index.php" title="Home page" alt="Head to the homepage. You'll have to log in again, though">Home</a></li>
     <li>
         <a href="#" title="Your work to be done" alt="Your work to be done">Work</a>
         <ul>
