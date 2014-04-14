@@ -108,7 +108,7 @@
     </label>
     <label>Status: 
         <select id="status" name="status">
-            <?php require "includes/statuses.php" ?>
+            <?php require "require/statuses.php" ?>
         </select>
     </label>
     <label for="employee">Select employee: 
