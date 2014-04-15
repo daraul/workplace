@@ -1,5 +1,7 @@
+<link id="add_job_css" class="form_css" rel="stylesheet" href="css/forms.css" />
+<?php require_once "require/db_connection.php"; ?>
 <?php  
-    $con = new mysqli("localhost", "employee", "1234", "workplace");
+    $con = new mysqli($db_host, $user_employee, $user_employee_pw, "workplace");
     $employees = mysqli_query($con, "SELECT * FROM employees");
     $jobs = mysqli_query($con, "SELECT * FROM worktodo");
     $jobs_ordered = mysqli_query($con, "SELECT * FROM worktodo ORDER BY JobTitle");
