@@ -1,8 +1,64 @@
 <link id="add_job_css" class="form_css" rel="stylesheet" href="css/forms.css" />
 <?php require_once "require/db_connection.php"; ?>
-
-<?php
-//SQL connection
+<?php //Form validation
+        
+    //define variables to set to empty including the error message variables:
+    $jobnameerr = $descerr = $employeeerr = $clienterr = $startdateerr = $duedateerr = "";
+    $jobname = $desc = $employee = $client = $startdate = $duedate = "";
+    //Make sure the request has been made and if so, test the fields.
+    function test_input($data){
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+    };
+    
+    if ($_SERVER["REQUEST_METHOD"] == "POST")
+    {
+    if(empty($_POST["jobname"])){
+        $jobnameerr = "A job name is required.";
+    } else {
+        $jobname = test_input($_POST["jobname"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z ]*$/",$jobname))
+        {
+            $jobnameerr = "Only letters spaces allowed."; 
+        }
+    }
+    if(empty($_POST["desc"])){
+        $descerr = "A description of the job is required.";
+    } else {
+        $desc = test_input($_POST["desc"]);
+        // check if name only contains letters and whitespace
+        if (!preg_match("/^[a-zA-Z ]*$/",$desc))
+        {
+            $descerr = "Only letters spaces allowed."; 
+        }
+    }
+    if(empty($_POST["employee"])){
+        $employeeerr = "An employee must be assigned to the job.";
+    } else {
+        $employee = test_input($_POST["employee"]);
+    }
+    if(empty($_POST["client"])){
+        $clienterr = "A client must be assigned to the job.";
+    } else {
+        $client = test_input($_POST["client"]);
+    }
+    if(empty($_POST["startdate"])){
+        $startdateerr = "A start date must be set for the job.";
+        } else {
+        $startdate = test_input($_POST["startdate"]);
+        }
+    if(empty($_POST["duedate"])){
+        $duedateerr = "A due date must be set for the job.";
+        } else {
+        $duedate = test_input($_POST["duedate"]);
+        }
+    };
+?>
+	
+<?php //SQL connection
     //$con = new mysqli($db_host, $user_root, $user_root_pw, "workplace");
     $con_select = new mysqli($db_host, $user_employee, $user_employee_pw, "workplace");
     if(mysqli_connect_errno()){
