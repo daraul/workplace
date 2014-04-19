@@ -78,7 +78,7 @@
     $due = $_POST["duedate"];
     
     if(isset($_POST['submit'])){
-        /*$insert = "INSERT INTO Worktobedone (Status, employeeID, ClientID, StartDate, DueDate, JobTitle, Description)
+        $insert = "INSERT INTO Worktobedone (Status, employeeID, ClientID, StartDate, DueDate, JobTitle, Description)
         VALUES
         ('" . $status . "', '" . $employee . "', '" . $client . "', '" . $start . "', '" . $due . "', '" . $jobtitle . "', '" . $jobdescription . "')
         ";
@@ -95,10 +95,10 @@
                     <p>Client number: " . $client . "</p>
                     <p>Start date: " . $start . "</p>
                     <p>Due date: " . $due . "</p>";
-        };*/
-        echo "<script>
-        	console.log(\"This works!\");
-        </script>"
+	        /*echo "<script>
+	        	console.log(\"This works!\");
+	        </script>"*/
+        };
     }
 ?>
 <!--The form actually starts here -->
