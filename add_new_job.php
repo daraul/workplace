@@ -2,12 +2,6 @@
     $page_title = "New job";
     require "require/head.php";
 ?>
-    <script>
-        $(function() {
-            $( ".datepicker" ).datepicker();
-            $( ".datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-        });
-    </script>
     
 </head>
 <body>
