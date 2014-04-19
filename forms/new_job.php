@@ -20,7 +20,7 @@
     } else {
         $jobname = test_input($_POST["jobname"]);
         // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z ]*$/",$jobname))
+        if (!preg_match("\A[A-Za-z0-9]+[A-Za-z0-9]\Z",$jobname))
         {
             $jobnameerr = "Only letters &#38; spaces allowed."; 
         }
@@ -78,7 +78,7 @@
     $due = $_POST["duedate"];
     
     if(isset($_POST['submit'])){
-        $insert = "INSERT INTO Worktobedone (Status, employeeID, ClientID, StartDate, DueDate, JobTitle, Description)
+        /*$insert = "INSERT INTO Worktobedone (Status, employeeID, ClientID, StartDate, DueDate, JobTitle, Description)
         VALUES
         ('" . $status . "', '" . $employee . "', '" . $client . "', '" . $start . "', '" . $due . "', '" . $jobtitle . "', '" . $jobdescription . "')
         ";
@@ -95,7 +95,10 @@
                     <p>Client number: " . $client . "</p>
                     <p>Start date: " . $start . "</p>
                     <p>Due date: " . $due . "</p>";
-        };
+        };*/
+        echo "<script>
+        	console.log(\"This works!\");
+        </script>"
     }
 ?>
 <!--The form actually starts here -->
