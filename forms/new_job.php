@@ -3,57 +3,57 @@
 <?php //Form validation
         
     //define variables to set to empty including the error message variables:
-    $jobnameerr = $descerr = $employeeerr = $clienterr = $startdateerr = $duedateerr = "";
+    //$jobnameerr = $descerr = $employeeerr = $clienterr = $startdateerr = $duedateerr = "";
     $jobname = $desc = $employee = $client = $startdate = $duedate = "";
     //Make sure the request has been made and if so, test the fields.
     function test_input($data){
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     };
     
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-    if(empty($_POST["jobname"])){
-        $jobnameerr = "A job name is required.";
-    } else {
-        $jobname = test_input($_POST["jobname"]);
-        // check if name only contains letters and whitespace
-        if (!preg_match("\A[A-Za-z0-9]+[A-Za-z0-9]\Z",$jobname))
-        {
-            $jobnameerr = "Only letters &#38; spaces allowed."; 
+        if(empty($_POST["jobname"])){
+            $jobnameerr = "A job name is required.";
+        } else {
+            $jobname = test_input($_POST["jobname"]);
+            // check if name only contains letters and whitespace
+            if (!preg_match("\A[A-Za-z0-9]+[A-Za-z0-9]\Z",$jobname))
+            {
+                $jobname = "Only letters & spaces allowed.";
+            }
         }
-    }
-    if(empty($_POST["desc"])){
-        $descerr = "A description of the job is required.";
-    } else {
-        $desc = test_input($_POST["desc"]);
-        // check if name only contains letters and whitespace
-        if (!preg_match("/^[a-zA-Z ]*$/",$desc))
-        {
-            $descerr = "Only letters spaces allowed."; 
+        if(empty($_POST["desc"])){
+            $descerr = "A description of the job is required.";
+        } else {
+            $desc = test_input($_POST["jobdesc"]);
+            // check if name only contains letters and whitespace
+            if (!preg_match("/^[a-zA-Z ]*$/",$jobdesc))
+            {
+                $jobdesc = "Only letters, spaces & numbers allowed for now."; 
+            }
         }
-    }
-    if(empty($_POST["employee"])){
-        $employeeerr = "An employee must be assigned to the job.";
-    } else {
-        $employee = test_input($_POST["employee"]);
-    }
-    if(empty($_POST["client"])){
-        $clienterr = "A client must be assigned to the job.";
-    } else {
-        $client = test_input($_POST["client"]);
-    }
-    if(empty($_POST["startdate"])){
-        $startdateerr = "A start date must be set for the job.";
+        if(empty($_POST["employee"])){
+            $employeeerr = "An employee must be assigned to the job.";
+        } else {
+            $employee = test_input($_POST["employee"]);
+        }
+        if(empty($_POST["client"])){
+            $clienterr = "A client must be assigned to the job.";
+        } else {
+            $client = test_input($_POST["client"]);
+        }
+        if(empty($_POST["startdate"])){
+            $startdateerr = "A start date must be set for the job.";
         } else {
         $startdate = test_input($_POST["startdate"]);
         }
-    if(empty($_POST["duedate"])){
-        $duedateerr = "A due date must be set for the job.";
+        if(empty($_POST["duedate"])){
+            $duedateerr = "A due date must be set for the job.";
         } else {
-        $duedate = test_input($_POST["duedate"]);
+            $duedate = test_input($_POST["duedate"]);
         }
     };
 ?>
@@ -78,15 +78,15 @@
     $due = $_POST["duedate"];
     
     if(isset($_POST['submit'])){
-        $insert = "INSERT INTO Worktobedone (Status, employeeID, ClientID, StartDate, DueDate, JobTitle, Description)
+        /*$insert = "INSERT INTO Worktobedone (Status, employeeID, ClientID, StartDate, DueDate, JobTitle, Description)
         VALUES
         ('" . $status . "', '" . $employee . "', '" . $client . "', '" . $start . "', '" . $due . "', '" . $jobtitle . "', '" . $jobdescription . "')
         ";
         if (!mysqli_query($con_insert, $insert))
         {
             die('Error: ' . mysqli_error($con_insert));
-            } else {
-                echo "<h3>New job added!</h3>
+            } else {*/
+                echo "<h3>You just tried to add this shit!</h3>
                     <p>Information below: </p>
                     <p>Job title: " . $jobtitle . "</p>
                     <p>Job status: Queued</p>
@@ -95,10 +95,10 @@
                     <p>Client number: " . $client . "</p>
                     <p>Start date: " . $start . "</p>
                     <p>Due date: " . $due . "</p>";
-	        /*echo "<script>
+	        echo "<script>
 	        	console.log(\"This works!\");
-	        </script>"*/
-        };
+	        </script>";
+        //};
     }
 ?>
 <!--The form actually starts here -->
@@ -142,13 +142,12 @@
     </label>
     <input type="submit" id="submit" name="submit" value="Add job" />
 </form>
-
-        <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-        <script src="//code.jquery.com/jquery-1.9.1.js"></script>
-        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <script src="//code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script>
-  $(function() {
-    $(".datepicker").datepicker();
-    $(".datepicker").datepicker("option", "dateFormat", "yy-mm-dd");
-  });
+    $(function() {
+        $(".datepicker").datepicker();
+        $(".datepicker").datepicker("option", "dateFormat", "yy-mm-dd");
+    });
 </script>
