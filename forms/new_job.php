@@ -12,12 +12,12 @@
     
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
+    	$jobname = $_POST["jobname"];
     	echo "<script>console.log('Job name is: \"" . $jobname . "\"')</script>";
         if(empty($_POST["jobname"])){
-            //$jobnameerr = "A job name is required.";
-            echo "<script>console.log('A job name is required')</script>";
+		//$jobnameerr = "A job name is required.";
+		echo "<script>console.log('A job name is required')</script>";
         } else {
-        	$jobname = $_POST["jobname"];
             	$jobname = test_input($_POST["jobname"]);
             	// check if name only contains letters and whitespace
             	if (preg_match("[A-Za-z]+[A-Za-z]",$jobname))
