@@ -20,11 +20,7 @@
         } else {
             $jobname = test_input($_POST["jobname"]);
             // check if name only contains letters and whitespace
-<<<<<<< HEAD
             if (!preg_match("[A-Za-z]+[A-Za-z]",$jobname))
-=======
-            if (!preg_match("[A-Za-z-0-9]+\s[A-Za-z-'0-9]+",$jobname))
->>>>>>> 05de210797b790ce8e27e42505af28f2b3cb73d3
             {
                 $jobname = "Only letters & spaces allowed.";
             }
