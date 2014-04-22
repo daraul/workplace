@@ -12,31 +12,31 @@
     
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
-    	$jobname = $_POST["jobname"];
     	echo "<script>console.log('Job name is: \"" . $jobname . "\"')</script>";
         if(empty($_POST["jobname"])){
             //$jobnameerr = "A job name is required.";
             echo "<script>console.log('A job name is required')</script>";
         } else {
-            $jobname = test_input($_POST["jobname"]);
-            // check if name only contains letters and whitespace
-            if (preg_match("[A-Za-z]+[A-Za-z]",$jobname))
-            {
-            	echo "<script>console.log('No error here. The job name is: \"" . $jobname . "\"')</script>";
-            } else {
-                $jobname = "Only letters & spaces allowed.";
-                echo "<script>console.log('Error thrown. Message here: \"" . $jobname . "\"')</script>";
-            }
+        	$jobname = $_POST["jobname"];
+            	$jobname = test_input($_POST["jobname"]);
+            	// check if name only contains letters and whitespace
+            	if (preg_match("[A-Za-z]+[A-Za-z]",$jobname))
+            	{
+            		echo "<script>console.log('No error here. The job name is: \"" . $jobname . "\"')</script>";
+    		} else {
+    			$jobname = "Only letters & spaces allowed.";
+                	echo "<script>console.log('Error thrown. Message here: \"" . $jobname . "\"')</script>";
+            	}
         }
         if(empty($_POST["desc"])){
-            $descerr = "A description of the job is required.";
+            	$descerr = "A description of the job is required.";
         } else {
-            $desc = test_input($_POST["jobdesc"]);
-            // check if name only contains letters and whitespace
-            if (!preg_match("/^[a-zA-Z ]*$/",$jobdesc))
-            {
-                $jobdesc = "Only letters, spaces & numbers allowed for now."; 
-            }
+		$desc = test_input($_POST["jobdesc"]);
+		// check if name only contains letters and whitespace
+		if (!preg_match("/^[a-zA-Z ]*$/",$jobdesc))
+		{
+                	$jobdesc = "Only letters, spaces & numbers allowed for now."; 
+            	}
         }
         if(empty($_POST["employee"])){
             $employeeerr = "An employee must be assigned to the job.";
