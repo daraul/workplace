@@ -22,10 +22,10 @@
             // check if name only contains letters and whitespace
             if (preg_match("[A-Za-z]+[A-Za-z]",$jobname))
             {
-            	echo "<script>console.log('" . $jobname . "')</script>";
+            	echo "<script>console.log('No error here. The job name is: &quot;" . $jobname . "&quot;')</script>";
             } else {
                 $jobname = "Only letters & spaces allowed.";
-                echo "<script>console.log('" . $jobname . "')</script>";
+                echo "<script>console.log('Error thrown. Message here: &quot;" . $jobname . "&quot;')</script>";
             }
         }
         if(empty($_POST["desc"])){
@@ -99,7 +99,7 @@
                     <p>Start date: " . $start . "</p>
                     <p>Due date: " . $due . "</p>";
 	        echo "<script>
-	        	console.log(\"This works!\");
+	        	console.log('Information added to db!');
 	        </script>";
         //};
     }
