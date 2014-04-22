@@ -24,8 +24,8 @@
             	{
             		echo "<script>console.log('No error here. The job name is: \"" . $jobname . "\"')</script>";
     		} else {
-    			$jobname = "Only letters & spaces allowed.";
-                	echo "<script>console.log('Error thrown. Message here: \"" . $jobname . "\"')</script>";
+    			//$jobname = "Only letters & spaces allowed.";
+                	echo "<script>console.log('Error thrown. Output here: \"" . $jobname . "\"')</script>";
             	}
         }
         if(empty($_POST["desc"])){
