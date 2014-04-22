@@ -1,10 +1,7 @@
 <link id="add_job_css" class="form_css" rel="stylesheet" href="css/forms.css" />
 <?php require_once "require/db_connection.php"; ?>
 <?php //Form validation
-        
-    //define variables to set to empty including the error message variables:
-    //$jobnameerr = $descerr = $employeeerr = $clienterr = $startdateerr = $duedateerr = "";
-    //$jobname = $desc = $employee = $client = $startdate = $duedate = "";
+
     //Make sure the request has been made and if so, test the fields.
     function test_input($data){
         $data = trim($data);
@@ -15,9 +12,11 @@
     
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
+    	$jobname = $_POST["jobname"];
     	echo "<script>console.log('Job name is: \"" . $jobname . "\"')</script>";
         if(empty($_POST["jobname"])){
-            $jobnameerr = "A job name is required.";
+            //$jobnameerr = "A job name is required.";
+            echo "<script>console.log('A job name is required')</script>";
         } else {
             $jobname = test_input($_POST["jobname"]);
             // check if name only contains letters and whitespace
