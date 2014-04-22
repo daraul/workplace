@@ -15,6 +15,7 @@
     
     if ($_SERVER["REQUEST_METHOD"] == "POST")
     {
+    	echo "console.log('<script>Job name is: \"" . $jobname . "\"')";
         if(empty($_POST["jobname"])){
             $jobnameerr = "A job name is required.";
         } else {
