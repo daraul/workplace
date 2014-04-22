@@ -4,7 +4,7 @@
         
     //define variables to set to empty including the error message variables:
     //$jobnameerr = $descerr = $employeeerr = $clienterr = $startdateerr = $duedateerr = "";
-    $jobname = $desc = $employee = $client = $startdate = $duedate = "";
+    //$jobname = $desc = $employee = $client = $startdate = $duedate = "";
     //Make sure the request has been made and if so, test the fields.
     function test_input($data){
         $data = trim($data);
