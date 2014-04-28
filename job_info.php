@@ -23,11 +23,11 @@
             echo "<a href=\"new_timeentry.php?key=" . $job_id . "\"><input type=\"button\" value=\"Add time entry\"></a>
             <h3>Job information </h3>
             <p>You can edit the job's information here: </p>";
-            require "includes/updatejobinfo.php";
+            require "forms/update_job_info.php";
         } else {
             echo "<h2>You didn't choose a job!</h2>
             <h3>Choose one below: </h3>";
-            require "includes/todotable.php";
+            require "tables/todo.php";
         }    
         ?>
     </div>
