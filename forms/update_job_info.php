@@ -1,6 +1,6 @@
 <?php
-    $update_con = new mysqli("localhost","employee","1234","workplace");
-    //Employees
+    require_once "require/db_connection.php";
+    $update_con = new mysqli($db_host, $user_employee, $user_employee_pw, "workplace");
     $employees = mysqli_query($update_con, "SELECT * FROM employees");
     //Clients
     $clients = mysqli_query($update_con, "SELECT * FROM Clients");
