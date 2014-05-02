@@ -64,6 +64,7 @@
     <input type="submit" id="submit" name="submit" value="Add job" />
 </form>
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="/css/forms.css" />
 <!--<script src="//code.jquery.com/jquery-1.9.1.js"></script>-->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
