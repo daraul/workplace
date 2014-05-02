@@ -69,7 +69,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
 <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script>
-    $("select#employee option[value='<?php echo $job_lead[0] ?>'").attr("selected", "");
-    $("select#client option[value='<?php echo $job_client[0] ?>'").attr("selected", "");
-    $("select#status option[value='<?php echo $job_status[0] ?>'").attr("selected", "");
+    $("select#employee option[value='<?php echo $job_lead[0] ?>']").attr("selected", "");
+    $("select#client option[value='<?php echo $job_client[0] ?>']").attr("selected", "");
+    $("select#status option[value='<?php echo $job_status[0] ?>']").attr("selected", "");
 </script>
