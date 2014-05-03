@@ -23,7 +23,7 @@
         array_push($job_status, $row['currentStatus']);
     }
 ?>
-<form class="add_info">
+<form class="add_info" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); echo "?key=" . $job_id;?>" method="post">
     <label>Job Name: 
         <input type="text" id="jobname" name="jobname" class="text_input" value="<?php echo $job_name[0]; ?>" required />
     </label>
