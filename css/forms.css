@@ -30,3 +30,11 @@
     height: 120px;
     width: 100%;
 }
+
+.error-text {
+    color: rgb(255, 0, 0);
+    font-size: 10px;
+    font-style: italic;
+    text-align: right;
+    visibility: hidden;
+}
