@@ -1,3 +1,7 @@
+<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+<link rel="stylesheet" href="css/forms.css" />
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <?php
     require_once "require/db_connection.php";
     $update_con = new mysqli($db_host, $user_employee, $user_employee_pw, "workplace");
@@ -10,7 +14,10 @@
     if(isset($_POST["submit"])){
         //Check that the submission isn't somehow empty
         if(empty($_POST['jobname']) || empty($_POST['jobdesc']) || empty($_POST['startdate']) || empty($_POST['duedate']) || empty($_POST['startdate']) || empty($_POST['client']) || empty($_POST['status'])){
-            
+            echo "<script>
+                $(\".error-text\").css(\"visibility\", \"visible\");
+                //document.getElementsByClassName(\"error-text\").style.visibility = \"visible\";
+            </script>";
         } else {
             //Submission successful, update variables to submitted data
             $job_name = $_POST['jobname'];
@@ -40,6 +47,7 @@
     </label>
     <label>Job Description: 
         <textarea rows="4" id="jobdesc" columns="50" name="jobdesc" /><?php echo $job_desc; ?></textarea>
+        <p class="error-text">This is required!</p>
     </label>
     <label>Lead: 
         <select id="employee" name="employee">
@@ -80,10 +88,6 @@
     </label>
     <input type="submit" id="submit" name="submit" value="Update job" />
 </form>
-<link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
-<link rel="stylesheet" href="css/forms.css" />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
-<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 <script>
     $("select#employee option[value='<?php echo $job_lead ?>']").attr("selected", "");
     $("select#client option[value='<?php echo $job_client ?>']").attr("selected", "");
