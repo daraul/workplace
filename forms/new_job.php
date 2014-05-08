@@ -114,6 +114,7 @@
     </label>
     <label>Status: 
         <select id="status" name="status">
+            <option selected disabled style="display: none;"></option>
             <?php require "require/statuses.php" ?>
         </select>
     </label>
