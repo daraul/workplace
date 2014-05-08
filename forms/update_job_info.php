@@ -8,6 +8,17 @@
     $update_select_job_names = mysqli_query($update_con, "SELECT * FROM worktodo WHERE JobID = " . $job_id);
     //Check for submission
     if(isset($_POST["submit"])){
+        //Check that the submission isn't somehow empty
+        /*if(empty($_POST['jobname']) || empty($_POST['jobdesc']) || empty($_POST['startdate']) || empty($_POST['duedate']) || empty($_POST['startdate']) || empty($_POST['client']) || empty($_POST['status'])){
+            $job_name = "This is required";
+            $job_desc = "This is required";
+            $job_start = "This is required";
+            $job_due = "This is required";
+            $job_lead = "This is required";
+            $job_client = "This is required";
+            $job_status = "This is required";
+        }*/
+        //Submission successful, update variables to submitted data
         $job_name = $_POST['jobname'];
         $job_desc = $_POST['jobdesc'];
         $job_start = $_POST['startdate'];
@@ -23,19 +34,19 @@
             $job_due = $row['DueDate'];
             $job_lead = $row['employeeID'];
             $job_client = $row['ClientID'];
-            $job_status = $row['status'];
+            $job_status = $row['currentStatus'];
         }
     }
 ?>
 <form class="add_info" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); echo "?key=" . $job_id;?>" method="post">
     <label>Job Name: 
-        <input type="text" id="jobname" name="jobname" class="text_input" value="<?php echo $job_name; ?>" required />
+        <input type="text" id="jobname" name="jobname" class="text_input" value="<?php echo $job_name; ?>" />
     </label>
     <label>Job Description: 
-        <textarea rows="4" id="jobdesc" columns="50" name="jobdesc" required /><?php echo $job_desc; ?></textarea>
+        <textarea rows="4" id="jobdesc" columns="50" name="jobdesc" /><?php echo $job_desc; ?></textarea>
     </label>
     <label>Lead: 
-        <select id="employee" name="employee" required>
+        <select id="employee" name="employee">
             <option disabled style="display: none;"></option>
             <?php
                 while($row = mysqli_fetch_array($employees)){
@@ -45,7 +56,7 @@
         </select>
     </label>
     <label>Client: 
-        <select id="client" name="client" required>
+        <select id="client" name="client">
         <option selected disabled style="display: none;"></option>
             <?php
                 while($client_row = mysqli_fetch_array($clients)){
@@ -55,13 +66,13 @@
         </select>
     </label>
     <label>Start Date: 
-        <input type="text" id="startdate" value="<?php echo $job_start[0]; ?>" name="startdate" class="datepicker" required />
+        <input type="text" id="startdate" value="<?php echo $job_start[0]; ?>" name="startdate" class="datepicker" />
     </label>
     <label>Due Date: 
-        <input type="text" id="duedate" class="datepicker" value="<?php echo $job_due[0]; ?>" name="duedate" required />
+        <input type="text" id="duedate" class="datepicker" value="<?php echo $job_due[0]; ?>" name="duedate" />
     </label>
     <label>Status: 
-        <select id="status" name="status" required>
+        <select id="status" name="status">
             <?php require "includes/statuses.php" ?>
         </select>
     </label>
