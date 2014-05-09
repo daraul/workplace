@@ -14,10 +14,12 @@
     if(isset($_POST["submit"])){
         //Check that the submission isn't somehow empty
         if(empty($_POST['jobname']) || empty($_POST['jobdesc']) || empty($_POST['startdate']) || empty($_POST['duedate']) || empty($_POST['startdate']) || empty($_POST['client']) || empty($_POST['status'])){
-            echo "<script>
-                $(\".error-text\").css(\"visibility\", \"visible\");
-                //document.getElementsByClassName(\"error-text\").style.visibility = \"visible\";
-            </script>";
+        echo "
+            <script>
+                //$(\"form label p.error-text\").css(\"visibility\", \"visible\");
+                //console.log(\"Something is empty!\");
+            </script>
+        ";
         } else {
             //Submission successful, update variables to submitted data
             $job_name = $_POST['jobname'];
@@ -43,7 +45,7 @@
 <form class="add_info" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); echo "?key=" . $job_id;?>" method="post">
     <label>Job Name: 
         <input type="text" id="jobname" name="jobname" class="text_input" value="<?php echo $job_name; ?>" />
-        <p class="error-text">This is required!</p>
+        <p id="error-text" class="error-text">This is required!</p>
     </label>
     <label>Job Description: 
         <textarea rows="4" id="jobdesc" columns="50" name="jobdesc" /><?php echo $job_desc; ?></textarea>
@@ -84,7 +86,6 @@
             <option selected disabled style="display: none;"></option>
             <?php require "includes/statuses.php" ?>
         </select>
-        <p class="error-text">This is required!</p>
     </label>
     <input type="submit" id="submit" name="submit" value="Update job" />
 </form>

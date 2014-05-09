@@ -36,5 +36,6 @@
     font-size: 10px;
     font-style: italic;
     text-align: right;
+    margin: 0;
     visibility: hidden;
 }
