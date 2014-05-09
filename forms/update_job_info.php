@@ -13,39 +13,30 @@
     //Check for submission
     if(isset($_POST["submit"])){
         //Check that each and every submission isn't somehow empty
-        if(empty($_POST['jobname'])){
-            $job_name = "This is required!";
+        if(empty($_POST['jobname']) || empty($_POST['jobdesc']) || empty($_POST['startdate']) || empty($_POST['duedate']) || empty($_POST['startdate']) || empty($_POST['client']) || empty($_POST['status'])){
+        echo "
+            <script>
+                //console.log(\"Something is empty!\");
+                alert(\"ALL fields are required! The form has been reset.\");
+            </script>
+        ";
+            while ($row = mysqli_fetch_array($update_select_job_names)){
+                $job_name = $row['JobTitle'];
+                $job_desc = $row['Description'];
+                $job_start = $row['StartDate'];
+                $job_due = $row['DueDate'];
+                $job_lead = $row['employeeID'];
+                $job_client = $row['ClientID'];
+                $job_status = $row['currentStatus'];
+            }
         } else {
+            //Submission successful, update variables to submitted data
             $job_name = $_POST['jobname'];
-        }
-        if(empty($_POST['jobdesc'])){
-            $job_desc = "You'll need a description!";
-        } else {
             $job_desc = $_POST['jobdesc'];
-        }
-        if(empty($_POST['startdate'])){
-            $job_start = "No start date?!";
-        } else {
             $job_start = $_POST['startdate'];
-        }
-        if(empty($_POST['duedate'])){
-            $job_due = "Does the project not end?";
-        } else {
             $job_due = $_POST['duedate'];
-        }
-        if(empty($_POST['employee'])){
-            $job_lead = "Who's the lead?";
-        } else {
-            $job_lead = $_POST['employee'];
-        }
-        if(empty($_POST['client'])){
-            $job_client = "Who's the client?";
-        } else {
+            $job_lead = $_POST['startdate'];
             $job_client = $_POST['client'];
-        }
-        if(empty($_POST['status'])){
-            $job_status = "What's the status?";
-        } else {
             $job_status = $_POST['status'];
         }
     } else {
