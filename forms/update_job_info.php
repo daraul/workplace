@@ -43,13 +43,23 @@
                 $job_client = $row['ClientID'];
                 $job_status = $row['currentStatus'];
             }
-        } else if(preg_match("[A-Za-z0-9\s]+",$job_name) || preg_match("[2]{1}[01]{1}[0-9]{2}\-(0[1-9]|1[012])\-(0[1-9]|1[0-9]|2[0-9]|3[01])", $job_start) || preg_match("[2]{1}[01]{1}[0-9]{2}\-(0[1-9]|1[012])\-(0[1-9]|1[0-9]|2[0-9]|3[01])", $job_due)) {
+        } else if(!preg_match("[A-Za-z0-9\s]+",$job_name) || !preg_match("[2]{1}[01]{1}[0-9]{2}\-(0[1-9]|1[012])\-(0[1-9]|1[0-9]|2[0-9]|3[01])", $job_start) || !preg_match("[2]{1}[01]{1}[0-9]{2}\-(0[1-9]|1[012])\-(0[1-9]|1[0-9]|2[0-9]|3[01])", $job_due)) {
             //Submission syntax is wrong!
             echo "
                 <script>
                     console.log('Submission syntax is wrong!');
+                    alert(\"Syntax is wrong somewhere! The form has been reset.\");
                 </script>
             ";
+            while ($row = mysqli_fetch_array($update_select_job_names)){
+                $job_name = $row['JobTitle'];
+                $job_desc = $row['Description'];
+                $job_start = $row['StartDate'];
+                $job_due = $row['DueDate'];
+                $job_lead = $row['employeeID'];
+                $job_client = $row['ClientID'];
+                $job_status = $row['currentStatus'];
+            }
         } else {
             //Submission successful, update variables to submitted data
             echo "
