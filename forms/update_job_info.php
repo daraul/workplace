@@ -100,11 +100,11 @@
         <p class="error-text">This is required!</p>
     </label>
     <label>Start Date: 
-        <input type="text" id="startdate" value="<?php echo $job_start; ?>" name="startdate" class="datepicker" required />
+        <input type="text" id="startdate" value="<?php echo $job_start; ?>" name="startdate" class="datepicker" pattern="[2]{1}[01]{1}[0-9]{2}" required />
         <p class="error-text">This is required!</p>
     </label>
     <label>Due Date: 
-        <input type="text" id="duedate" class="datepicker" value="<?php echo $job_due; ?>" name="duedate" required />
+        <input type="text" id="duedate" class="datepicker" value="<?php echo $job_due; ?>" name="duedate" pattern="[2]{1}[01]{1}[0-9]{2}" required />
         <p class="error-text">This is required!</p>
     </label>
     <label>Status: 
@@ -124,7 +124,8 @@
         $( ".datepicker" ).datepicker({
           showOn: "button",
           buttonImage: "images/calendar.gif",
-          buttonImageOnly: true
+          buttonImageOnly: true,
+          dateFormat: "yy-mm-dd"
         });
     });
     $("select#employee option[value='<?php echo $job_lead ?>']").attr("selected", "");
