@@ -43,7 +43,14 @@
                 $job_client = $row['ClientID'];
                 $job_status = $row['currentStatus'];
             }
-        } else if(preg_match("[A-Za-z0-9\s]+",$jobname)) {
+        } else if(preg_match("[A-Za-z0-9\s]+",$job_name) || preg_match("[2]{1}[01]{1}[0-9]{2}\-(0[1-9]|1[012])\-(0[1-9]|1[0-9]|2[0-9]|3[01])", $job_start) || preg_match("[2]{1}[01]{1}[0-9]{2}\-(0[1-9]|1[012])\-(0[1-9]|1[0-9]|2[0-9]|3[01])", $job_due)) {
+            //Submission syntax is wrong!
+            echo "
+                <script>
+                    console.log('Submission syntax is wrong!');
+                </script>
+            ";
+        } else {
             //Submission successful, update variables to submitted data
             echo "
                 <script>
@@ -100,11 +107,11 @@
         <p class="error-text">This is required!</p>
     </label>
     <label>Start Date: 
-        <input type="text" id="startdate" value="<?php echo $job_start; ?>" name="startdate" class="datepicker" pattern="[2]{1}[01]{1}[0-9]{2}" required />
+        <input type="text" id="startdate" value="<?php echo $job_start; ?>" name="startdate" class="datepicker" pattern="[2]{1}[01]{1}[0-9]{2}\-(0[1-9]|1[012])\-(0[1-9]|1[0-9]|2[0-9]|3[01])" required />
         <p class="error-text">This is required!</p>
     </label>
     <label>Due Date: 
-        <input type="text" id="duedate" class="datepicker" value="<?php echo $job_due; ?>" name="duedate" pattern="[2]{1}[01]{1}[0-9]{2}" required />
+        <input type="text" id="duedate" class="datepicker" value="<?php echo $job_due; ?>" name="duedate" pattern="[2]{1}[01]{1}[0-9]{2}\-(0[1-9]|1[012])\-(0[1-9]|1[0-9]|2[0-9]|3[01])" required />
         <p class="error-text">This is required!</p>
     </label>
     <label>Status: 
