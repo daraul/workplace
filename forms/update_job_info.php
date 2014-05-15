@@ -65,12 +65,18 @@
             }
         } else {
             //Submission successful, update variables to submitted data
-            echo "
-                <script>
-                    console.log('Submission successful!');
-                </script>
-            ";
-            //$insert = mysqli_query($update_con, "UPDATE worktodo SET 'currentStatus' = '" . $job_status . "', 'ClientID' = '" . $job_client . "', employeeID' = '" . $job_lead . "', 'StartDate' = '" . $job_start . "' 'DueDate' = '" . $job_due . "', 'JobTitle' = '" . $job_name . "', 'Description' = '" . $job_desc . "' WHERE 'JobID' = '" . $job_id . "'");
+            
+            $insert = mysqli_query($update_con, "UPDATE worktodo SET `currentStatus` = '" . $job_status . "', `ClientID` = '" . $job_client . "',`employeeID` = '" . $job_lead . "', `StartDate` = '" . $job_start . "', `DueDate` = '" . $job_due . "', `JobTitle` = '" . $job_name . "', `Description` = '" . $job_desc . "' WHERE `JobID` = '" . $job_id . "'");
+            if (!mysqli_query($update_con, $insert))
+            {
+                die('Error: ' . mysqli_error($update_con));
+            } else {
+                echo "
+                    <script>
+                        console.log('Submission successful!');
+                    </script>
+                ";
+            }
         }
     } else {
         echo "
