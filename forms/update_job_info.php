@@ -46,11 +46,13 @@
                 $job_status = $row['currentStatus'];
             }
             //Otherwise check the formats for each
-        } else if (!preg_match("^.*[A-Za-z0-9\s]+.*$",$job_name) || !preg_match("^.*[2]{1}[01]{1}[0-9]{2}\-(0[1-9]|1[012])\-(0[1-9]|1[0-9]|2[0-9]|3[01]).*$", $job_start) || !preg_match("^.*[2]{1}[01]{1}[0-9]{2}\-(0[1-9]|1[012])\-(0[1-9]|1[0-9]|2[0-9]|3[01])*.$", $job_due)) {
+        } else if (!preg_match("/^[a-z0-9\s]+\z/i", $job_name)) {
             //Submission syntax is wrong! Kill it with fire!
             echo "
                 <script>
                     console.log(\"Submission syntax is wrong!\");
+                    console.log(\"Job name is: " . $job_name . "\");
+                    console.log(\"The matches string is: " . preg_match("[PMG]", $job_name) . "\");
                     alert(\"Syntax is wrong somewhere! The form has been reset.\");
                 </script>
             ";
@@ -68,9 +70,10 @@
             echo "
                 <script>
                     console.log('Submission successful!');
+                    console.log(\"The matches string is: " . preg_match("[ABC]", $job_name) . "\");
                 </script>
             ";
-            $insert = mysqli_query($update_con, "UPDATE worktodo SET 'currentStatus' = '" . $job_status . "', 'ClientID' = '" . $job_client . "', employeeID' = '" . $job_lead . "', 'StartDate' = '" . $job_start . "' 'DueDate' = '" . $job_due . "', 'JobTitle' = '" . $job_name . "', 'Description' = '" . $job_desc . "' WHERE 'JobID' = '" . $job_id . "'");
+            //$insert = mysqli_query($update_con, "UPDATE worktodo SET 'currentStatus' = '" . $job_status . "', 'ClientID' = '" . $job_client . "', employeeID' = '" . $job_lead . "', 'StartDate' = '" . $job_start . "' 'DueDate' = '" . $job_due . "', 'JobTitle' = '" . $job_name . "', 'Description' = '" . $job_desc . "' WHERE 'JobID' = '" . $job_id . "'");
         }
     } else {
         echo "
