@@ -148,10 +148,6 @@
     <input type="submit" id="submit" name="submit" value="Update job" />
 </form>
 <script>
-    /*$(function() {
-        $(".datepicker").datepicker();
-        $( ".datepicker" ).datepicker("option", "dateFormat", "yy-mm-dd");
-    });*/
     $(function() {
         $( ".datepicker" ).datepicker({
           showOn: "button",
