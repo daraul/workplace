@@ -24,7 +24,7 @@
         $job_desc = test_input($_POST['jobdesc']);
         $job_start = test_input($_POST['startdate']);
         $job_due = test_input($_POST['duedate']);
-        $job_lead = test_input($_POST['startdate']);
+        $job_lead = test_input($_POST['employee']);
         $job_client = test_input($_POST['client']);
         $job_status = test_input($_POST['status']);
         //Check that each and every submission isn't somehow empty
@@ -64,11 +64,16 @@
                 $job_status = $row['currentStatus'];
             }
         } else {
-            //Submission successful, update variables to submitted data
+            //Submission successful, create query
             
-            $insert = mysqli_query($update_con, "UPDATE worktodo SET `currentStatus` = '" . $job_status . "', `ClientID` = '" . $job_client . "',`employeeID` = '" . $job_lead . "', `StartDate` = '" . $job_start . "', `DueDate` = '" . $job_due . "', `JobTitle` = '" . $job_name . "', `Description` = '" . $job_desc . "' WHERE `JobID` = '" . $job_id . "'");
-            if (!mysqli_query($update_con, $insert))
+            $update = mysqli_query($update_con, "UPDATE `worktodo` SET `currentStatus` = '$job_status', `ClientID` = '$job_client', `employeeID` = '$job_lead', `StartDate` = '$job_start', `DueDate` = '$job_due', `JobTitle` = '$job_name', `Description` = '$job_desc' WHERE `JobID` = '$job_id'");
+            if (!mysqli_query($update_con, $update))
             {
+                echo "
+                    <script>
+                        console.log(\"Query is: $update\");
+                    </script>
+                ";
                 die('Error: ' . mysqli_error($update_con));
             } else {
                 echo "
