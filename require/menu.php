@@ -4,7 +4,7 @@
         <!--<a href="#" title="Your work to be done" alt="Your work to be done">Work</a>
         <ul>
             <li><a href="#" title="All jobs to be done" alt="Jobs to be done">Pending jobs</a></li>
-            <li>--><a href="add_new_job.php" title="Add a new job" alt="Add a new job">New job</a></li>
+            <li>--><a href="new_job.php" title="Add a new job" alt="Add a new job">New job</a></li>
         <!--</ul>-->
     </li>
     <li><a href="clients.php" title="Clients" alt="Click here to see your clients!">Clients</a></li>
