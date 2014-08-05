@@ -1,4 +1,6 @@
 class JobsController < ApplicationController
+    include JobsHelper
+    
     def index
         @jobs = Job.all
     end
@@ -8,10 +10,7 @@ class JobsController < ApplicationController
     end
     
     def create
-        @job = Job.new
-        @job.title = params[:job][:title]
-        @job.description = params[:job][:description]
-        @job.complete = params[:job][:complete]
+        @job = Job.new(job_params)
         @job.save
         
         redirect_to jobs_path
@@ -28,6 +27,15 @@ class JobsController < ApplicationController
         @job.destroy
         
         flash.notice = "Job '#{@job.title}' deleted!"
+        
+        redirect_to jobs_path
+    end
+    
+    def update
+        @job = Job.find(params[:id])
+        @job.update(job_params)
+        
+        flash.notice = "Job '#{@job.title}' updated!"
         
         redirect_to jobs_path
     end
