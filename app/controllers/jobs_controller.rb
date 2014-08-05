@@ -10,6 +10,8 @@ class JobsController < ApplicationController
     def create
         @job = Job.new
         @job.title = params[:job][:title]
+        @job.description = params[:job][:description]
+        @job.complete = params[:job][:complete]
         @job.save
         
         redirect_to jobs_path
