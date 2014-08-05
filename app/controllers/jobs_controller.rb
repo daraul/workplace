@@ -12,6 +12,21 @@ class JobsController < ApplicationController
         @job.title = params[:job][:title]
         @job.save
         
-        redirect_to jobs_path(@jobs)
+        redirect_to jobs_path
+        
+        flash.notice = "Job '#{@job.title}' created!"
+    end
+    
+    def show
+        @job = Job.find(params[:id])
+    end
+    
+    def destroy
+        @job = Job.find(params[:id])
+        @job.destroy
+        
+        flash.notice = "Job '#{@job.title}' deleted!"
+        
+        redirect_to jobs_path
     end
 end

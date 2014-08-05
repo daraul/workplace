@@ -4,6 +4,7 @@
     <% @jobs.each do |job| %>
         <li>
             <%= job.title %>
+            <%= link_to "Delete job", job_path(job), method: :delete, data: {confirm: "Are you sure?"} %>
         </li>
     <% end %>
 </ul>
