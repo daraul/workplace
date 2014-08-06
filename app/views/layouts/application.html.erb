@@ -9,6 +9,9 @@
 <body>
 
 <p class="flash"><%= flash.notice %></p>
+<%= link_to "Home", root_path %>
+<%= link_to "New job", new_job_path %>
+<%= link_to "Employees", employees_path %>
 <%= yield %>
 
 </body>
