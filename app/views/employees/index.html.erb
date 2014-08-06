@@ -3,7 +3,7 @@
 <ul>
     <% @employees.each do |employee| %>
         <li>
-            <%= employee.first_name + " " + employee.last_name %>
+            <%= link_to employee.first_name + " " + employee.last_name, employee_path(employee) %>
         </li>
     <% end %>
 </ul>

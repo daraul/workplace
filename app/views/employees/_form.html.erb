@@ -1,0 +1,17 @@
+<%= form_for(@employee, html: {multipart: true}) do |f| %>
+    <ul>
+        <% @employee.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+        <% end %>
+    </ul>
+    <p>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %><br />
+        
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>
