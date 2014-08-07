@@ -7,6 +7,8 @@ class JobsController < ApplicationController
     
     def new
         @job = Job.new
+        
+        @employees = Employee.all
     end
     
     def create
@@ -21,7 +23,7 @@ class JobsController < ApplicationController
     def show
         @job = Job.find(params[:id])
         
-        @employee = @job.employee
+        @employee = Employee.find(@job.employee_id)
     end
     
     def destroy

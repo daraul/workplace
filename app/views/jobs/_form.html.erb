@@ -14,7 +14,8 @@
     </p>
     <p>
         <%= f.label :employee_id %>
-        <%= f.text_area :employee_id %>
+        <!--<%= f.select :employee_id, [["john", 1], ["jacob", 2]] %>-->
+        <%= f.collection_select(:employee_id, Employee.all, :id, :first_name) %>
     </p>
     <p>
         <%= f.label :complete %>
