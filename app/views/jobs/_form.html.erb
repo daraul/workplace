@@ -14,8 +14,7 @@
     </p>
     <p>
         <%= f.label :employee_id %>
-        <!--<%= f.select :employee_id, [["john", 1], ["jacob", 2]] %>-->
-        <%= f.collection_select(:employee_id, Employee.all, :id, :first_name) %>
+        <%= f.collection_select(:employee_id, Employee.all, :id, :full_name) %>
     </p>
     <p>
         <%= f.label :complete %>

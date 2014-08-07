@@ -7,8 +7,6 @@ class JobsController < ApplicationController
     
     def new
         @job = Job.new
-        
-        @employees = Employee.all
     end
     
     def create
