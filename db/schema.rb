@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140806164405) do
     t.string   "title"
     t.string   "description"
     t.boolean  "complete"
+    t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

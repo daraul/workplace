@@ -20,6 +20,8 @@ class JobsController < ApplicationController
     
     def show
         @job = Job.find(params[:id])
+        
+        @employee = @job.employee
     end
     
     def destroy
@@ -37,6 +39,6 @@ class JobsController < ApplicationController
         
         flash.notice = "Job '#{@job.title}' updated!"
         
-        redirect_to jobs_path
+        redirect_to job_path(@job)
     end
 end

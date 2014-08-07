@@ -1,6 +1,12 @@
 <h1><%= @job.title %></h1>
+
 <p>Job description: <%= @job.description %></p>
+
+<p>Assigned to: <%= link_to @employee.first_name + " " + @employee.last_name, employee_path(@employee) %></p>
+
 <p>Complete? <%= @job.complete %></p>
+
+
 
 <%= link_to "Delete job", job_path(@job), method: :delete, data: {confirm: "Are you sure?"} %>
 

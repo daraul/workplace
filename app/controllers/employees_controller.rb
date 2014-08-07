@@ -20,6 +20,8 @@ class EmployeesController < ApplicationController
     
     def show
         @employee = Employee.find(params[:id])
+        
+        @jobs = @employee.jobs
     end
     
     def destroy
@@ -37,6 +39,6 @@ class EmployeesController < ApplicationController
         
         flash.notice = "Employee '#{@employee.first_name} #{@employee.last_name}' updated!"
         
-        redirect_to employees_path
+        redirect_to employee_path(@employee)
     end
 end

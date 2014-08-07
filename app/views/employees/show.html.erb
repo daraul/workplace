@@ -1,5 +1,15 @@
 <h1><%= @employee.first_name + " " + @employee.last_name %></h1>
 
-<%= link_to "Delete employee", employee_path(@employee), method: :delete, data: {confirm: "Are you sure?"} %>
+<h2>Assignments</h2>
+<ul>
+    <% @jobs.each do |job| %>
+        <li>
+            <%= link_to job.title, job_path(job) %>
+        </li>
+    <% end %>
+</ul>
 
+<h2>Edit employee details</h2>
 <%= render partial: 'form' %>
+
+<%= link_to "Delete employee", employee_path(@employee), method: :delete, data: {confirm: "Are you sure?"} %>
