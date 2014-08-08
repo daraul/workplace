@@ -1,0 +1,9 @@
+<h1>Time entries</h1>
+
+<ul>
+    <% @time_entries.each do |time_entry| %>
+        <li>
+            <%= time_entry.description %>
+        </li>
+    <% end %>
+</ul>

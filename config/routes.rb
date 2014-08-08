@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
     root to: 'jobs#index'
     
-    resources :jobs
+    resources :jobs do
+        resources :time_entries
+    end
     
-    resources :employees
+    resources :employees do
+        resources :time_entries
+    end
+    
+    resources :time_entries
 end

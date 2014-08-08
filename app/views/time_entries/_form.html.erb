@@ -1,0 +1,30 @@
+<%= form_for(@time_entry, html: {multipart: true}) do |f| %>
+    <ul>
+        <% @time_entry.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+        <% end %>
+    </ul>
+    <p>
+        <%= f.label :description %><br />
+        <%= f.text_area :description %>
+    </p>
+    <p>
+        <%= f.label :start %><br />
+        <%= f.datetime_select :start %>
+    </p>
+    <p>
+        <%= f.label :finish %>
+        <%= f.datetime_select :finish %>
+    </p>
+    <p>
+        <%= f.label :job_id %>
+        <%= f.collection_select(:job_id, Job.all, :id, :title) %>
+    </p>
+    <p>
+        <%= f.label :employee_id %>
+        <%= f.collection_select(:employee_id, Employee.all, :id, :full_name) %>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>

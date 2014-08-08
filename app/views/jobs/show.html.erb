@@ -6,8 +6,16 @@
 
 <p>Complete? <%= @job.complete %></p>
 
+<h2>Time Entries</h2>
+<%= link_to "New time entry", new_job_time_entry_path(@job) %>
+<ul>
+    <% @time_entries.each do |time_entry| %>
+        <li>
+            <%= link_to time_entry.description, time_entry_path(time_entry) %> <%= link_to "Delete", time_entry_path(time_entry), method: :delete, data: {confirm: "Are you sure?"} %>
+        </li>
+    <% end %>
+</ul>
 
-
-<%= link_to "Delete job", job_path(@job), method: :delete, data: {confirm: "Are you sure?"} %>
-
+<h2>Edit job details</h2>
 <%= render partial: 'form' %>
+<%= link_to "Delete job", job_path(@job), method: :delete, data: {confirm: "Are you sure?"} %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140806164405) do
+ActiveRecord::Schema.define(version: 20140808162502) do
 
   create_table "employees", force: true do |t|
     t.string   "first_name"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 20140806164405) do
     t.string   "title"
     t.string   "description"
     t.boolean  "complete"
+    t.integer  "employee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "time_entries", force: true do |t|
+    t.string   "description"
+    t.datetime "start"
+    t.datetime "finish"
+    t.integer  "job_id"
     t.integer  "employee_id"
     t.datetime "created_at"
     t.datetime "updated_at"
