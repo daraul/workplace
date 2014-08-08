@@ -1,1 +1,1 @@
-Just a rails version of the app for practice. 
+To use it just clone it, run migrations and start the server. 
