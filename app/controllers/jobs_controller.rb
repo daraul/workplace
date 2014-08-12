@@ -24,6 +24,8 @@ class JobsController < ApplicationController
         @employee = Employee.find(@job.employee_id)
         
         @time_entries = @job.time_entries
+        
+        @project = @job.project
     end
     
     def destroy

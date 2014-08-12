@@ -2,7 +2,7 @@
 
 <p>Job description: <%= @job.description %></p>
 
-<p>Assigned to: <%= link_to @employee.first_name + " " + @employee.last_name, employee_path(@employee) %></p>
+<p>Assigned to: <%= link_to @employee.full_name, employee_path(@employee) %>, <%= link_to @project.name, project_path(@project) %></p>
 
 <p>Complete? <%= @job.complete %></p>
 

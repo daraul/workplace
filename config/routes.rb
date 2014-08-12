@@ -10,4 +10,10 @@ Rails.application.routes.draw do
     end
     
     resources :time_entries
+    
+    resources :projects do
+        resources :assignments
+    end
+    
+    resources :assignments
 end

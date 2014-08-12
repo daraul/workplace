@@ -1,0 +1,18 @@
+<%= form_for(@assignment, html: {multipart: true}) do |f| %>
+    <ul>
+        <% @assignment.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+        <% end %>
+    </ul>
+    <p>
+        <%= f.label :employee_id %>
+        <%= f.collection_select(:employee_id, Employee.all, :id, :full_name) %>
+    </p>
+    <p>
+        <%= f.label :project_id %>
+        <%= f.collection_select(:project_id, Project.all, :id, :name) %>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>

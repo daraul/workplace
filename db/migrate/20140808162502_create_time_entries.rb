@@ -4,8 +4,8 @@ class CreateTimeEntries < ActiveRecord::Migration
         t.string :description
         t.datetime :start
         t.datetime :finish
-        t.references :job
-        t.references :employee
+        t.belongs_to :job
+        t.belongs_to :employee
         
         t.timestamps
     end

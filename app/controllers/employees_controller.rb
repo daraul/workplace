@@ -22,6 +22,8 @@ class EmployeesController < ApplicationController
         @employee = Employee.find(params[:id])
         
         @jobs = @employee.jobs
+        
+        @projects = @employee.projects
     end
     
     def destroy

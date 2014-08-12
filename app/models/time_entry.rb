@@ -1,4 +1,4 @@
 class TimeEntry < ActiveRecord::Base
     belongs_to :job
-    has_one :employee
+    belongs_to :employee
 end
