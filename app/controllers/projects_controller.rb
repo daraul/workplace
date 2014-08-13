@@ -24,6 +24,8 @@ class ProjectsController < ApplicationController
         @jobs = @project.jobs
         
         @employees = @project.employees
+        
+        @assignments = @project.assignments
     end
     
     def destroy

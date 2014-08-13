@@ -17,6 +17,10 @@
         <%= f.collection_select(:employee_id, Employee.all, :id, :full_name) %>
     </p>
     <p>
+        <%= f.label :project %>
+        <%= f.collection_select(:project_id, Project.all, :id, :name) %>
+    </p>
+    <p>
         <%= f.label :complete %>
         <%= f.check_box :complete %>
     </p>
