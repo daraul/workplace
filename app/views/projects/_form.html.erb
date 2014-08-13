@@ -6,7 +6,7 @@
     </ul>
     <p>
         <%= f.label :name %><br />
-        <%= f.text_field :name %>
+        <%= f.text_field :name, :pattern => '\A[A-Z]' %>
     </p>
     <p>
         <%= f.submit %>
