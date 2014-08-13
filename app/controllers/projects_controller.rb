@@ -11,11 +11,16 @@ class ProjectsController < ApplicationController
     
     def create
         @project = Project.new(project_params)
-        @project.save
+        #@project.save
         
-        redirect_to projects_path
+        if @project.save
+            redirect_to projects_path
         
-        flash.notice = "Project '#{@project.name}' created!"
+            flash.notice = "Project '#{@project.name}' created!"
+        else
+            redirect_to new_project_path
+            flash.notice = "Something was wrong with your input!"
+        end
     end
     
     def show
