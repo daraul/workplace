@@ -6,7 +6,7 @@
     </ul>
     <p>
         <%= f.label :name %><br />
-        <%= f.text_field :name, :pattern => '(\w[A-Z]+\s)+' %>
+        <%= f.text_field :name, :pattern => '[\w\!\@\#\$\%\(\)\|\\\/\<\>\&\s]+' %>
     </p>
     <p>
         <%= f.submit %>
