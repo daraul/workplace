@@ -11,7 +11,7 @@
     <% end %>
     <p>
         <%= f.label :name %><br />
-        <%= f.text_field :name, :pattern => '[\w\!\@\#\$\%\(\)\|\\\/\<\>\&\s]+' %>
+        <%= f.text_field :name, :pattern => '^[A-z0-9\.\\\/\(\)\?\$\&\s]{6,35}$' %>
     </p>
     <p>
         <%= f.submit %>

@@ -11,11 +11,15 @@ class EmployeesController < ApplicationController
     
     def create
         @employee = Employee.new(employee_params)
-        @employee.save
         
-        redirect_to employees_path
+        if @employee.save
+            redirect_to employee_path(@employee)
         
-        flash.notice = "Employee '#{@employee.first_name} #{@employee.last_name}' created!"
+            flash.notice = "Employee '#{@employee.full_name}' created!"
+        else
+            render 'new'
+            flash.notice = "Something was wrong with your input!"
+        end
     end
     
     def show
@@ -37,10 +41,14 @@ class EmployeesController < ApplicationController
     
     def update
         @employee = Employee.find(params[:id])
-        @employee.update(employee_params)
         
-        flash.notice = "Employee '#{@employee.first_name} #{@employee.last_name}' updated!"
-        
-        redirect_to employee_path(@employee)
+        if @employee.update(employee_params)
+            redirect_to employee_path(@employee)
+            
+            flash.notice = "Employee '#{@employee.first_name} #{@employee.last_name}' updated!"
+        else
+            render 'show'
+            flash.notice = "Something was wrong with your input!"
+        end
     end
 end
