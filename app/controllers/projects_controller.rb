@@ -17,7 +17,7 @@ class ProjectsController < ApplicationController
         
             flash.notice = "Project '#{@project.name}' created!"
         else
-            redirect_to new_project_path
+            render 'new'
             flash.notice = "Something was wrong with your input!"
         end
     end

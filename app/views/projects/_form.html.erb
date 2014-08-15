@@ -1,9 +1,14 @@
-<%= form_for(@project, html: {multipart: true}) do |f| %>
-    <ul>
-        <% @project.errors.full_messages.each do |error| %>
-            <li><%= error %></li>
-        <% end %>
-    </ul>
+<%= form_for :project, url: projects_path do |f| %>
+    <% if @project.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being created:</h2>
+            <ul>
+                <% @project.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
     <p>
         <%= f.label :name %><br />
         <%= f.text_field :name, :pattern => '[\w\!\@\#\$\%\(\)\|\\\/\<\>\&\s]+' %>
