@@ -1,6 +1,8 @@
 class ProjectsController < ApplicationController
     include ProjectsHelper
     
+    http_basic_authenticate_with name: "user", password: "1234", except: [:index, :show]
+    
     def index
         @projects = Project.all
     end

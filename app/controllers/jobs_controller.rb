@@ -1,6 +1,8 @@
 class JobsController < ApplicationController
     include JobsHelper
     
+    http_basic_authenticate_with name: "daraul", password: "1234", except: [:index, :show]
+    
     def index
         @jobs = Job.all
     end
