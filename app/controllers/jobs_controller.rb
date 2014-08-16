@@ -11,11 +11,15 @@ class JobsController < ApplicationController
     
     def create
         @job = Job.new(job_params)
-        @job.save
         
-        redirect_to jobs_path
-        
-        flash.notice = "Job '#{@job.title}' created!"
+        if @job.save
+            redirect_to jobs_path
+            
+            flash.notice = "Job '#{@job.title}' created!"
+        else
+            render 'new'
+            flash.notice = "Something was wrong with your input!"
+        end
     end
     
     def show
@@ -39,10 +43,13 @@ class JobsController < ApplicationController
     
     def update
         @job = Job.find(params[:id])
-        @job.update(job_params)
         
-        flash.notice = "Job '#{@job.title}' updated!"
-        
-        redirect_to job_path(@job)
+        if @job.update(job_params)
+            redirect_to job_path(@job)
+            
+            flash.notice = "Job '#{@job.title}' updated!"
+        else
+            render 'show'
+        end
     end
 end
