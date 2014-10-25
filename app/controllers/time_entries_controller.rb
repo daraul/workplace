@@ -1,7 +1,17 @@
 class TimeEntriesController < ApplicationController
     include TimeEntriesHelper
     
-    http_basic_authenticate_with name: "user", password: "1234", except: [:index, :show]
+    before_filter :is_admin
+    
+    def is_admin
+        if user_signed_in?
+            true
+        else
+            flash.notice = "You need to log in to do that!"
+        
+            redirect_to unauthenticated_root_path
+        end
+    end
     
     def index
         @time_entries = TimeEntry.all

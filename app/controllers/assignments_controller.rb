@@ -1,6 +1,18 @@
 class AssignmentsController < ApplicationController
     include AssignmentsHelper
     
+    before_filter :is_admin
+    
+    def is_admin
+        if user_signed_in?
+            true
+        else
+            flash.notice = "You need to log in to do that!"
+        
+            redirect_to unauthenticated_root_path
+        end
+    end
+    
     def new
         @assignment = Assignment.new
     end
