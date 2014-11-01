@@ -37,7 +37,7 @@ class JobsController < ApplicationController
     def show
         @job = Job.find(params[:id])
         
-        @employee = Employee.find(@job.employee_id)
+        @employee = User.find(@job.user_id)
         
         @time_entries = @job.time_entries
         

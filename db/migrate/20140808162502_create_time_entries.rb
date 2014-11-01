@@ -5,7 +5,7 @@ class CreateTimeEntries < ActiveRecord::Migration
         t.datetime :start
         t.datetime :finish
         t.belongs_to :job
-        t.belongs_to :employee
+        t.belongs_to :user
         
         t.timestamps
     end

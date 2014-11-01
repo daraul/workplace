@@ -39,7 +39,7 @@ class ProjectsController < ApplicationController
         
         @jobs = @project.jobs
         
-        @employees = @project.employees
+        @employees = @project.users
         
         @assignments = @project.assignments
     end

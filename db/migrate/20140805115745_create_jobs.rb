@@ -4,7 +4,7 @@ class CreateJobs < ActiveRecord::Migration
         t.string :title
         t.string :description
         t.boolean :complete
-        t.belongs_to :employee
+        t.belongs_to :user
         t.belongs_to :project
         
         t.timestamps

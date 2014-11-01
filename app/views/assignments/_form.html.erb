@@ -5,8 +5,8 @@
         <% end %>
     </ul>
     <p>
-        <%= f.label :employee_id %>
-        <%= f.collection_select(:employee_id, Employee.all, :id, :full_name) %>
+        <%= f.label :user_id %>
+        <%= f.collection_select(:user_id, User.all, :id, :full_name) %>
     </p>
     <p>
         <%= f.label :project_id %>
