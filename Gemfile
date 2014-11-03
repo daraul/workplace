@@ -41,3 +41,5 @@ gem 'spring',        group: :development
 gem 'pundit'
 
 gem 'devise'
+
+gem 'rolify'
