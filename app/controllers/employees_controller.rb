@@ -24,17 +24,4 @@ class EmployeesController < ApplicationController
         
         @projects = @employee.projects
     end
-    
-    def update
-        @employee = User.find(params[:id])
-        
-        if @employee.update(employee_params)
-            redirect_to employee_path(@employee)
-            
-            flash.notice = "Employee '#{@employee.full_name}' updated!"
-        else
-            render 'show'
-            flash.notice = "Something was wrong with your input!"
-        end
-    end
 end
