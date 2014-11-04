@@ -44,10 +44,6 @@ class ProjectsController < ApplicationController
         authorize @project
         
         @jobs = @project.jobs
-        
-        @employees = @project.users
-        
-        @assignments = @project.assignments
     end
     
     def destroy
