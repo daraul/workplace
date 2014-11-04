@@ -29,7 +29,7 @@ class JobsController < ApplicationController
         @job = Job.new(job_params)
         
         if @job.save
-            redirect_to jobs_path
+            redirect_to job_path(Job.last)
             
             flash.notice = "Job '#{@job.title}' created!"
         else
