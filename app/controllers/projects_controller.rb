@@ -29,7 +29,7 @@ class ProjectsController < ApplicationController
         @project = Project.new(project_params)
         
         if @project.save
-            redirect_to projects_path
+            redirect_to project_path(Project.last)
         
             flash.notice = "Project '#{@project.name}' created!"
         else
