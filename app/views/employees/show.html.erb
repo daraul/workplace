@@ -1,6 +1,7 @@
 <h1><%= @employee.full_name %></h1>
+<p>Email: <%= @employee.email %></p>
 
-<h2>Jobs</h2>
+<h3>Jobs</h3>
 <ul>
     <% @jobs.each do |job| %>
         <li>
@@ -9,7 +10,7 @@
     <% end %>
 </ul>
 
-<h2>Assignments</h2>
+<h3>Assignments</h3>
 <ul>
     <% @projects.each do |project| %>
         <li>
