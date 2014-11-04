@@ -1,4 +1,4 @@
-<%= form_for :job, :url => { :method => :update } do |f| %>
+<%= form_for @job, :url => { action: "update" } do |f| %>
     <% if @job.errors.any? %>
         <div id="error_explanation">
             <h2><%= pluralize(@job.errors.count, "error") %> prohibited this project from being created:</h2>
