@@ -15,10 +15,14 @@ class TimeEntriesController < ApplicationController
     
     def index
         @time_entries = TimeEntry.all
+        
+        authorize @time_entries
     end
     
     def new
         @time_entry = TimeEntry.new
+        
+        authorize @time_entry
     end
     
     def create
@@ -32,10 +36,14 @@ class TimeEntriesController < ApplicationController
     
     def show
         @time_entry = TimeEntry.find(params[:id])
+        
+        authorize @time_entry
     end
     
     def destroy
         @time_entry = TimeEntry.find(params[:id])
+        
+        authorize @time_entry
         
         job_id = @time_entry.job_id
         
@@ -48,10 +56,13 @@ class TimeEntriesController < ApplicationController
     
     def update
         @time_entry = TimeEntry.find(params[:id])
+        
+        authorize @time_entry
+        
         @time_entry.update(job_params)
         
         flash.notice = "Time entry updated!"
         
-        redirect_to jobs_path
+        redirect_to job_path(time_entry_params[:job_id])
     end
 end
