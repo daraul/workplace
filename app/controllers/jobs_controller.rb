@@ -21,6 +21,8 @@ class JobsController < ApplicationController
     
     def new
         @job = Job.new
+        
+        authorize @job
     end
     
     def create
@@ -39,6 +41,8 @@ class JobsController < ApplicationController
     def show
         @job = Job.find(params[:id])
         
+        authorize @job
+        
         @employee = User.find(@job.user_id)
         
         @time_entries = @job.time_entries
@@ -48,6 +52,9 @@ class JobsController < ApplicationController
     
     def destroy
         @job = Job.find(params[:id])
+        
+        authorize @job
+        
         @job.destroy
         
         flash.notice = "Job '#{@job.title}' deleted!"
@@ -57,6 +64,8 @@ class JobsController < ApplicationController
     
     def update
         @job = Job.find(params[:id])
+        
+        authorize @job
         
         if @job.update(job_params)
             redirect_to job_path(@job)
