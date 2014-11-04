@@ -25,7 +25,7 @@ class TimeEntriesController < ApplicationController
         @time_entry = TimeEntry.new(time_entry_params)
         @time_entry.save
         
-        redirect_to jobs_path
+        redirect_to job_path(time_entry_params[:job_id])
         
         flash.notice = "Time entry created!"
     end
@@ -38,7 +38,7 @@ class TimeEntriesController < ApplicationController
         @time_entry = TimeEntry.find(params[:id])
         @time_entry.destroy
         
-        redirect_to jobs_path
+        redirect_to job_path
         
         flash.notice = "Time entry deleted!"
     end
