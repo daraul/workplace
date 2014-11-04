@@ -7,6 +7,6 @@ class JobPolicy < ApplicationPolicy
     end
     
     def index?
-        user.has_role? :create_job
+        user.has_role? :view_jobs
     end
 end
