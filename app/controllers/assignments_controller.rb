@@ -15,6 +15,8 @@ class AssignmentsController < ApplicationController
     
     def new
         @assignment = Assignment.new
+        
+        authorize @assignment
     end
     
     def create
