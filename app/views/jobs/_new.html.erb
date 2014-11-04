@@ -1,7 +1,7 @@
 <%= form_for :job, url: jobs_path do |f| %>
     <% if @job.errors.any? %>
         <div id="error_explanation">
-            <h2><%= pluralize(@job.errors.count, "error") %> prohibited this project from being created:</h2>
+            <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being created:</h2>
             <ul>
                 <% @job.errors.full_messages.each do |msg| %>
                     <li><%= msg %></li>
