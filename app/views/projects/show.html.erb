@@ -1,7 +1,6 @@
 <h1><%= @project.name %></h1>
 <p>Team: </p>
 
-<%= link_to "Assign new employee", new_project_assignment_path(@project) %>
 <p>Jobs: </p>
 <ul>
     <% @jobs.each do |job| %>
