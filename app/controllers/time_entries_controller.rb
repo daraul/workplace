@@ -36,9 +36,12 @@ class TimeEntriesController < ApplicationController
     
     def destroy
         @time_entry = TimeEntry.find(params[:id])
+        
+        job_id = @time_entry.job_id
+        
         @time_entry.destroy
         
-        redirect_to job_path
+        redirect_to job_path(job_id)
         
         flash.notice = "Time entry deleted!"
     end
