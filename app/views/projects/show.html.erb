@@ -1,5 +1,12 @@
 <h1><%= @project.name %></h1>
 <p>Team: </p>
+<ul>
+    <% @jobs.each do |job| %>
+        <li>
+            <%= User.find(job.user_id).full_name %>
+        </li>
+    <% end %>
+</ul>
 
 <p>Jobs: </p>
 <ul>

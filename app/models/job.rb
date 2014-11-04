@@ -6,6 +6,7 @@ class Job < ActiveRecord::Base
     validates :user_id, presence: true
     validates :project_id, presence: true
     
+    has_many :time_entries
     belongs_to :user
     belongs_to :project
 end
