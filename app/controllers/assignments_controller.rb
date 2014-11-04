@@ -15,6 +15,8 @@ class AssignmentsController < ApplicationController
     
     def new
         @assignment = Assignment.new
+        
+        authorize @assignment
     end
     
     def create
@@ -24,7 +26,7 @@ class AssignmentsController < ApplicationController
         # If not, render the page again and display the errors.
         if @assignment.save
             flash.notice = "Job assigned!"
-            redirect_to projects_path
+            redirect_to project_path(assignment_params[:project_id])
         else
             render 'new'
         end

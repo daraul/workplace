@@ -16,6 +16,7 @@
     <%= link_to "Employees", employees_path %>
     <%= link_to "Jobs", jobs_path %>
     <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+    <%= link_to current_user.full_name, employee_path(current_user) %>
 <% end %>
 <%= yield %>
 
