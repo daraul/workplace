@@ -1,13 +1,13 @@
 <h1><%= @project.name %></h1>
 <p>Team: </p>
 <ul>
-    <% @employees.each do |employee| %>
+    <% @team.each do |employee| %>
         <li>
             <%= link_to employee.full_name, employee_path(employee) %>
         </li>
     <% end %>
 </ul>
-<%= link_to "Assign new employee", new_project_assignment_path(@project) %>
+
 <p>Jobs: </p>
 <ul>
     <% @jobs.each do |job| %>

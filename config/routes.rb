@@ -21,9 +21,5 @@ Rails.application.routes.draw do
     
     resources :time_entries
     
-    resources :projects do
-        resources :assignments
-    end
-    
-    resources :assignments
+    resources :projects
 end

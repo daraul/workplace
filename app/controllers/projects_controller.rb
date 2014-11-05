@@ -45,9 +45,7 @@ class ProjectsController < ApplicationController
         
         @jobs = @project.jobs
         
-        @employees = @project.users
-        
-        @assignments = @project.assignments
+        @team = @project.users.uniq
     end
     
     def destroy
