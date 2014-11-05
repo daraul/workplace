@@ -22,6 +22,6 @@ class EmployeesController < ApplicationController
         
         @jobs = @employee.jobs
         
-        @projects = @employee.projects
+        @projects = @employee.projects.uniq
     end
 end
