@@ -11,4 +11,5 @@ class User < ActiveRecord::Base
          
         has_many :jobs
         has_many :time_entries
+        has_many :projects, through: :jobs
 end
