@@ -15,10 +15,14 @@ class EmployeesController < ApplicationController
     
     def index
         @employees = User.all
+        
+        authorize @employees
     end
     
     def show
         @employee = User.find(params[:id])
+        
+        authorize @employee
         
         @jobs = @employee.jobs
         
