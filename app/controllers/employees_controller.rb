@@ -27,5 +27,11 @@ class EmployeesController < ApplicationController
         @jobs = @employee.jobs
         
         @projects = @employee.projects.uniq
+        
+        @roles = []
+        
+        @employee.roles.each do |role|
+            @roles << role.name
+        end
     end
 end

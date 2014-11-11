@@ -10,11 +10,20 @@
     <% end %>
 </ul>
 
-<h3>Assignments</h3>
+<h3>Projects</h3>
 <ul>
     <% @projects.each do |project| %>
         <li>
             <%= link_to project.name, project_path(project) %>
+        </li>
+    <% end %>
+</ul>
+
+<h3>Roles</h3>
+<ul>
+    <% @roles.sort.each do |role| %>
+        <li>
+            <%= role %>
         </li>
     <% end %>
 </ul>
