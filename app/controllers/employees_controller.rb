@@ -34,4 +34,18 @@ class EmployeesController < ApplicationController
             @roles << role.name
         end
     end
+    
+    def update 
+        @employee = User.find(params[:id])
+        
+        authorize @employee
+        
+        if @employee.update(employee_params)
+            redirect_to employee_path(@employee)
+            
+            flash.notice = "Employee '#{@employee.full_name}' updated!"
+        else
+            render 'show'
+        end
+    end
 end
