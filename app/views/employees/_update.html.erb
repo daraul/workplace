@@ -18,6 +18,10 @@
         <%= f.text_field :last_name %>
     </p>
     <p>
+        <%= f.label :role %>
+        <%= f.collection_select(:id, Role.all, :name, :name) %>
+    </p>
+    <p>
         <%= f.submit %>
     </p>
 <% end %>
