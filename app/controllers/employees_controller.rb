@@ -27,5 +27,27 @@ class EmployeesController < ApplicationController
         @jobs = @employee.jobs
         
         @projects = @employee.projects.uniq
+        
+        @roles = []
+        
+        @employee.roles.each do |role|
+            @roles << role.name
+        end
+    end
+    
+    def update 
+        @employee = User.find(params[:id])
+        
+        authorize @employee
+        
+        if @employee.update(employee_params)
+            @employee.add_role params[:user][:roles]
+            
+            redirect_to employee_path(@employee)
+            
+            flash.notice = "Employee '#{@employee.full_name}' updated!"
+        else
+            render 'show'
+        end
     end
 end

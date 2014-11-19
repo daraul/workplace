@@ -13,4 +13,8 @@ class UserPolicy < ApplicationPolicy
     def show?
         user.has_role? :view_employee
     end
+    
+    def update?
+        user.has_role? :update_employee
+    end
 end
