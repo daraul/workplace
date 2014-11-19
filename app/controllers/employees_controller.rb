@@ -41,6 +41,8 @@ class EmployeesController < ApplicationController
         authorize @employee
         
         if @employee.update(employee_params)
+            @employee.add_role params[:user][:roles]
+            
             redirect_to employee_path(@employee)
             
             flash.notice = "Employee '#{@employee.full_name}' updated!"
