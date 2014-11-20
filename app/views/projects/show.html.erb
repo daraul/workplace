@@ -1,7 +1,7 @@
 <h1><%= @project.name %></h1>
 
 <h2>Organization</h2>
-<%= @project.organization.name %>
+<%= link_to @project.organization.name, organization_path(@project.organization) %>
 
 <p>Team: </p>
 <ul>
