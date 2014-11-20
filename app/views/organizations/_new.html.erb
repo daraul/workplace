@@ -1,0 +1,19 @@
+<%= form_for :organization, url: organizations_path do |f| %>
+    <% if @organization.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being created:</h2>
+            <ul>
+                <% @organization.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <p>
+        <%= f.label :name %><br />
+        <%= f.text_field :name %>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>

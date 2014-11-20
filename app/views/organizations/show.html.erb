@@ -8,3 +8,12 @@
         </li>
     <% end %>
 </ul>
+
+<h2>Projects</h2>
+<ul>
+    <% @projects.each do |project| %>
+        <li>
+            <%= link_to project.name, project_path(project) %>
+        </li>
+    <% end %>
+</ul>
