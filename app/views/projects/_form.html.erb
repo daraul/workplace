@@ -14,6 +14,10 @@
         <%= f.text_field :name, :pattern => '^[A-z0-9\.\\\/\(\)\?\$\&\s]{6,35}$' %>
     </p>
     <p>
+        <%= f.label :organization %><br />
+        <%= f.collection_select(:organization_id, Organization.all, :id, :name) %>
+    </p>
+    <p>
         <%= f.submit %>
     </p>
 <% end %>
