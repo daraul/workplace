@@ -3,10 +3,14 @@ class OrganizationsController < ApplicationController
     
     def index 
         @organizations = current_user.organizations
+        
+        authorize @organizations
     end
     
     def show 
         @organization = Organization.find(params[:id])
+        
+        authorize @organization
         
         @employees = @organization.users
         
@@ -15,10 +19,14 @@ class OrganizationsController < ApplicationController
     
     def new 
         @organization = Organization.new
+        
+        authorize @organization
     end
     
     def create
         @organization = Organization.new(organization_params)
+        
+        authorize @organization
         
         if @organization.save 
             redirect_to organization_path(Organization.last)
