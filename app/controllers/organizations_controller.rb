@@ -26,9 +26,9 @@ class OrganizationsController < ApplicationController
     def create
         @organization = Organization.new(organization_params)
         
-        authorize @organization
-        
         if @organization.save 
+            @organization.users << current_user
+            
             redirect_to organization_path(Organization.last)
             
             flash.notice = "Organization '#{@organization.name}' created!"
