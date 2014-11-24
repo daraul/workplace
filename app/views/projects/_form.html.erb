@@ -15,7 +15,7 @@
     </p>
     <p>
         <%= f.label :organization %><br />
-        <%= f.collection_select(:organization_id, Organization.all, :id, :name) %>
+        <%= f.collection_select(:organization_id, current_user.organizations, :id, :name) %>
     </p>
     <p>
         <%= f.submit %>
