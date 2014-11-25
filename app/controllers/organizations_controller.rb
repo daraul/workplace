@@ -39,4 +39,16 @@ class OrganizationsController < ApplicationController
         end
     end
     
+    def destroy 
+        @organization = Organization.find(params[:id])
+        
+        authorize @organization
+        
+        @organization.destroy
+        
+        flash.notice = "Organization '#{@organization.name}' deleted!"
+        
+        redirect_to organizations_path
+    end 
+    
 end
