@@ -14,7 +14,7 @@ class JobsController < ApplicationController
     end
     
     def index
-        @jobs = Job.all
+        @jobs = current_user.jobs 
         
         authorize @jobs
     end
