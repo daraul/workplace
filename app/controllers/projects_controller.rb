@@ -17,6 +17,14 @@ class ProjectsController < ApplicationController
         @projects = Project.all
         
         authorize @projects
+        
+        @projects = []
+        
+        current_user.organizations.each do |organization|
+            organization.projects.each do |project|
+                @projects << project
+            end 
+        end
     end
     
     def new
