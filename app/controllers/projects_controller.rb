@@ -14,17 +14,9 @@ class ProjectsController < ApplicationController
     end
     
     def index
-        @projects = Project.all
+        @projects = current_user.projects
         
         authorize @projects
-        
-        @projects = []
-        
-        current_user.organizations.each do |organization|
-            organization.projects.each do |project|
-                @projects << project
-            end 
-        end
     end
     
     def new
