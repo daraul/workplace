@@ -16,7 +16,7 @@ class EmployeesController < ApplicationController
     def index
         @employees = User.all
         
-        @colleagues = current_user.colleagues
+        @colleagues = current_user.users.uniq
         
         authorize @employees
     end
