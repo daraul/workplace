@@ -8,6 +8,17 @@ class User < ActiveRecord::Base
     def full_name
         "#{first_name} #{last_name}"
     end
+    
+    def colleagues
+        colleagues = []
+        self.organizations.each do |organization|
+            organization.users.each do |user|
+                colleagues << user
+            end
+        end 
+        
+        return colleagues.uniq
+    end 
          
     has_many :jobs
     has_many :time_entries
