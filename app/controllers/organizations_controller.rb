@@ -39,6 +39,26 @@ class OrganizationsController < ApplicationController
         end
     end
     
+    #Lots of changes here. I hope I didn't screw it up. 
+    def update 
+        @organization = Organization.find(params[:id])
+        
+        #Rails kept throwing a param missing error, so I hacked this up to fix that 
+        params[:organization] = { :name => @organization.name }
+        
+        if @organization.update(organization_params)
+            if params.has_key?(:add_employee)
+                @organization.add_employee(params[:add_employee])
+            end
+            
+            redirect_to organization_path(@organization)
+            
+            flash.notice = "Organization updated!"
+        else 
+            render 'show'
+        end 
+    end 
+    
     def destroy 
         @organization = Organization.find(params[:id])
         
