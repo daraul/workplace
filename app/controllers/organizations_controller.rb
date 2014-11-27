@@ -12,7 +12,7 @@ class OrganizationsController < ApplicationController
         
         authorize @organization
         
-        @employees = @organization.users
+        @employees = @organization.users.uniq
         
         @projects = @organization.projects
     end
