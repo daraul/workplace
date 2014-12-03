@@ -8,6 +8,8 @@ class OrganizationsController < ApplicationController
     def show 
         @organization = Organization.find(params[:id])
         
+        authorize @organization 
+        
         @employees = @organization.users.uniq
         
         @projects = @organization.projects

@@ -14,8 +14,9 @@ class OrganizationPolicy < ApplicationPolicy
         user.has_role? :create_organization
     end 
     
+    #Check whether the user belongs to the organization 
     def show?
-        user.has_role? :view_organization
+        user.organizations.any? { |organization| organization[:id] == @organization.id }
     end 
     
     def destroy?
