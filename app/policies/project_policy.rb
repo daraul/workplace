@@ -10,7 +10,7 @@ class ProjectPolicy < ApplicationPolicy
         user.has_role? :view_projects
     end
     
-    def new?
+    def create?
         user.has_role? :create_project
         
         #This should also have a way to check that the user is associated with the organization and that they have the right roles within that organization.
