@@ -3,14 +3,10 @@ class OrganizationsController < ApplicationController
     
     def index 
         @organizations = current_user.organizations
-        
-        authorize @organizations
     end
     
     def show 
         @organization = Organization.find(params[:id])
-        
-        authorize @organization
         
         @employees = @organization.users.uniq
         
@@ -19,8 +15,6 @@ class OrganizationsController < ApplicationController
     
     def new 
         @organization = Organization.new
-        
-        authorize @organization
     end
     
     def create
@@ -62,8 +56,6 @@ class OrganizationsController < ApplicationController
     def destroy 
         @organization = Organization.find(params[:id])
         
-        authorize @organization
-        
         @organization.destroy
         
         flash.notice = "Organization '#{@organization.name}' deleted!"
@@ -72,7 +64,6 @@ class OrganizationsController < ApplicationController
     end 
     
     def remove_employee
-        fail 
         @organization = Organization.find(params[:id])
         
         redirect_to organization_path(@organization)
