@@ -10,7 +10,7 @@ class JobPolicy < ApplicationPolicy
         user.has_role? :view_jobs
     end
     
-    def new?
+    def create?
         user.has_role? :create_job
     end
     
