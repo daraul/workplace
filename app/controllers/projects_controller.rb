@@ -24,6 +24,8 @@ class ProjectsController < ApplicationController
     def create
         @project = Project.new(project_params)
         
+        authorize @project 
+        
         if @project.save
             redirect_to project_path(Project.last)
         
