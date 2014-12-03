@@ -6,6 +6,8 @@
     <% @employees.each do |employee| %>
         <li>
             <%= link_to employee.full_name, employee_path(employee) %>
+            <!-- #I had to add a route for this to be able to link to it. Hopefully I can remove the employee with just their ID -->
+            <%= link_to "remove", organization_remove_employee_path(@organization, :employee_id => employee.id), :action => "remove_employee" %>
         </li>
     <% end %>
 </ul>

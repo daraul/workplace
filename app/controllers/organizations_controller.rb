@@ -71,4 +71,11 @@ class OrganizationsController < ApplicationController
         redirect_to organizations_path
     end 
     
+    def remove_employee
+        fail 
+        @organization = Organization.find(params[:id])
+        
+        redirect_to organization_path(@organization)
+    end 
+    
 end

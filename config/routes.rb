@@ -23,5 +23,7 @@ Rails.application.routes.draw do
     
     resources :projects
     
-    resources :organizations
+    resources :organizations do
+        get 'remove_employee'
+    end 
 end
