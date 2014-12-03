@@ -21,12 +21,12 @@ class JobsController < ApplicationController
     
     def new
         @job = Job.new
-        
-        authorize @job
     end
     
     def create
         @job = Job.new(job_params)
+        
+        authorize @job
         
         if @job.save
             redirect_to job_path(Job.last)
