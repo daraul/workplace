@@ -11,7 +11,8 @@ class UserPolicy < ApplicationPolicy
     end
     
     def show?
-        user.has_role? :view_employee
+        #Show the current user only pages their authorized to see via roles
+        user.has_role? "view_employee_#{@employee.id}"
     end
     
     def update?

@@ -11,7 +11,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def create
         super
         
-        @user.add_role "view_jobs"
+        #Add the role for the employee to view their own page 
+        @user.add_role "view_employee_#{current_user.id}"
     end
 
   # GET /resource/edit

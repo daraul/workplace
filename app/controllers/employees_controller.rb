@@ -22,6 +22,8 @@ class EmployeesController < ApplicationController
     def show
         @employee = User.find(params[:id])
         
+        authorize @employee 
+        
         @jobs = @employee.jobs
         
         @projects = @employee.projects.uniq
