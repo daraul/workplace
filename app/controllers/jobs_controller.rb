@@ -20,6 +20,13 @@ class JobsController < ApplicationController
     def new
         @job = Job.new
         @colleagues = current_user.users
+        @projects = []
+        
+        current_user.organizations.each do |organization|
+            organization.projects.each do |project|
+                @projects << project 
+            end 
+        end 
     end
     
     def create
