@@ -19,6 +19,7 @@ class JobsController < ApplicationController
     
     def new
         @job = Job.new
+        @colleagues = current_user.users
     end
     
     def create
