@@ -23,8 +23,9 @@
 
 <!-- #The form to add a new employee  --> 
 <h2>Add employee</h2>
-<%= form_tag organization_path(@organization), method: "patch" do %>
-    <%= label_tag :add_employee, "Add employee" %>
-    <%= text_field_tag :add_employee %>
+<!-- This works to get to the controller... let's see if the controller works now. -->
+<%= form_tag organization_add_employee_path(@organization, :employee_email => :employee_email), :action => "add_employee", method: "get" do %>
+    <%= label_tag :employee_email, "Email: " %>
+    <%= text_field_tag :employee_email %>
     <%= submit_tag "Add employee" %>
 <% end %>

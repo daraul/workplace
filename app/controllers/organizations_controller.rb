@@ -65,6 +65,14 @@ class OrganizationsController < ApplicationController
         redirect_to organizations_path
     end 
     
+    def add_employee
+        @organization = Organization.find(params[:organization_id])
+        
+        @organization.users << User.find_by(email: params[:employee_email])
+        
+        redirect_to organization_path(@organization)
+    end 
+    
     def remove_employee
         @organization = Organization.find(params[:organization_id])
         

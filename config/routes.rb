@@ -25,5 +25,6 @@ Rails.application.routes.draw do
     
     resources :organizations do
         get 'remove_employee'
+        get 'add_employee'
     end 
 end
