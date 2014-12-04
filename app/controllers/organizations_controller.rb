@@ -25,6 +25,9 @@ class OrganizationsController < ApplicationController
         if @organization.save 
             @organization.users << current_user
             
+            #Add the role for the current_user to create projects in the organization they just created
+            current_user.add_role "create_project_in_organization_#{@organization.id}"
+            
             redirect_to organization_path(Organization.last)
             
             flash.notice = "Organization '#{@organization.name}' created!"
