@@ -18,6 +18,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
         organization.name = "Self"
         organization.save
         organization.users << @user 
+        
+        #Add the role for the user to create a project in their own organization
+        @user.add_role "create_project_in_organization_#{organization.id}"
     end
 
   # GET /resource/edit
