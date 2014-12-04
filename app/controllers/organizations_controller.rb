@@ -66,9 +66,13 @@ class OrganizationsController < ApplicationController
     end 
     
     def remove_employee
-        @organization = Organization.find(params[:id])
+        @organization = Organization.find(params[:organization_id])
         
-        redirect_to organization_path(@organization)
+        @organization.users.delete(params[:employee_id])
+            
+        #I'd prefer for this to send the user back to the organization path, but right now that throws an error. 
+        #Maybe later I can fix this functionality
+        redirect_to organizations_path
     end 
     
 end
