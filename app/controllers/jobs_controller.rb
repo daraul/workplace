@@ -19,7 +19,7 @@ class JobsController < ApplicationController
     
     def new
         @job = Job.new
-        @colleagues = current_user.users
+        @colleagues = current_user.users.uniq
         @projects = []
         
         current_user.organizations.each do |organization|
