@@ -18,11 +18,11 @@
     </p>
     <p>
         <%= f.label :job_id %>
-        <%= f.collection_select(:job_id, Job.all, :id, :title) %>
+        <%= f.collection_select(:job_id, @jobs, :id, :title) %>
     </p>
     <p>
         <%= f.label :user_id %>
-        <%= f.collection_select(:user_id, User.all, :id, :full_name) %>
+        <%= f.collection_select(:user_id, @colleagues, :id, :full_name) %>
     </p>
     <p>
         <%= f.submit %>

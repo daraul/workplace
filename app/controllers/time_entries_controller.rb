@@ -19,6 +19,10 @@ class TimeEntriesController < ApplicationController
     
     def new
         @time_entry = TimeEntry.new
+        
+        @colleagues = current_user.users.uniq
+        
+        @jobs = current_user.jobs
     end
     
     def create
