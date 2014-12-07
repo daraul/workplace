@@ -11,9 +11,8 @@ class ProjectPolicy < ApplicationPolicy
     end
     
     def create?
-        #This should also have a way to check that the user is associated with the organization and that they have the right roles within that organization.
-        #Users must have authorization to create a project in a given organization first 
-        user.has_role? "create_project_in_organization_#{@project.organization_id}"
+        #Users should only be able to create projects in organizations they are a part of 
+        user.organizations.any? { |organization| organization.id == @project.organization_id }
     end
     
     def show?
