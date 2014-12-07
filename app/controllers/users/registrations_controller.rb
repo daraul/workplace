@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         super
         
         organization = Organization.new 
-        organization.name = "Self"
+        organization.name = @user.full_name
         organization.save
         organization.users << @user 
         
