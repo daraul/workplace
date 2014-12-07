@@ -32,7 +32,12 @@ class JobsController < ApplicationController
     def create
         @job = Job.new(job_params)
         
-        if @job.save
+        #The project and employee assigned to the new job must both be a part of the same organization
+        #I need to find a way to get this error and create my own error message for it
+        project = Project.find(params[:job][:project_id])
+        employee = User.find(params[:job][:user_id])
+        
+        if @job.save && employee.organizations.any? { |organization| organization[:id] == project.organization.id }
             redirect_to job_path(Job.last)
             
             flash.notice = "Job '#{@job.title}' created!"
