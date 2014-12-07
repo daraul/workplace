@@ -11,9 +11,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def create
         super
         
-        #Add the role for the employee to view their own page 
-        @user.add_role "view_employee_#{current_user.id}"
-        
         organization = Organization.new 
         organization.name = "Self"
         organization.save
