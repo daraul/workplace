@@ -27,6 +27,9 @@ class TimeEntriesController < ApplicationController
     
     def create
         @time_entry = TimeEntry.new(time_entry_params)
+        
+        authorize @time_entry
+        
         @time_entry.save
         
         redirect_to job_path(time_entry_params[:job_id])

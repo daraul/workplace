@@ -1,18 +1,19 @@
 class TimeEntryPolicy < ApplicationPolicy
     attr_reader :user, :time_entry
     
-    def initialize(user, job)
+    def initialize(user, time_entry)
         @user = user
-        @job = job
+        @time_entry = time_entry
     end
     
     def index?
         user.has_role? :view_time_entries
     end
     
-    def new?
-        user.has_role? :create_time_entry
-    end
+    def create?
+        user = User.find(@time_entry.user_id)
+        user.jobs.any? { |job| job.id == @time_entry.job.id }
+    end 
     
     def show?
         user.has_role? :view_time_entry
