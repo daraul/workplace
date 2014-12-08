@@ -16,7 +16,8 @@ class ProjectPolicy < ApplicationPolicy
     end
     
     def show?
-        user.has_role? :view_project
+        #User should only be able to view projects that are assigned to their organizations
+        user.organizations.any? { |organization| organization.id == @project.organization_id }
     end
     
     def destroy?
