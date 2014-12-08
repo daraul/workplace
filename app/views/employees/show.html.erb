@@ -28,5 +28,7 @@
     <% end %>
 </ul>
 
-<h3>Edit</h3>
-<%= render partial: 'update' %>
+<% if @employee.has_role? "update_user" %>
+    <h3>Edit</h3>
+    <%= render partial: 'update' %>
+<% end %>

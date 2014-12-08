@@ -14,19 +14,17 @@ class ProjectsController < ApplicationController
     end
     
     def index
-        @projects = Project.all
-        
-        authorize @projects
+        @projects = current_user.projects
     end
     
     def new
         @project = Project.new
-        
-        authorize @project
     end
     
     def create
         @project = Project.new(project_params)
+        
+        authorize @project 
         
         if @project.save
             redirect_to project_path(Project.last)
@@ -41,8 +39,6 @@ class ProjectsController < ApplicationController
     def show
         @project = Project.find(params[:id])
         
-        authorize @project
-        
         @jobs = @project.jobs
         
         @team = @project.users.uniq
@@ -50,8 +46,6 @@ class ProjectsController < ApplicationController
     
     def destroy
         @project = Project.find(params[:id])
-        
-        authorize @project
         
         @project.destroy
         
@@ -62,8 +56,6 @@ class ProjectsController < ApplicationController
     
     def update
         @project = Project.find(params[:id])
-        
-        authorize @project
         
         @project.update(project_params)
         

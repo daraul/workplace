@@ -1,0 +1,31 @@
+<h1><%= @organization.name %></h1>
+<%= link_to "Delete organization", organization_path(@organization), method: :delete, data: {confirm: "Are you sure about this? This will also delete all associated projects and their associated jobs"} %>
+
+<h2>Employees</h2>
+<ul>
+    <% @employees.each do |employee| %>
+        <li>
+            <%= link_to employee.full_name, employee_path(employee) %>
+            <!-- #I had to add a route for this to be able to link to it. Hopefully I can remove the employee with just their ID -->
+            <%= link_to "remove", organization_remove_employee_path(@organization, :employee_id => employee.id), :action => "remove_employee" %>
+        </li>
+    <% end %>
+</ul>
+
+<h2>Projects</h2>
+<ul>
+    <% @projects.each do |project| %>
+        <li>
+            <%= link_to project.name, project_path(project) %>
+        </li>
+    <% end %>
+</ul>
+
+<!-- #The form to add a new employee  --> 
+<h2>Add employee</h2>
+<!-- This works to get to the controller... let's see if the controller works now. -->
+<%= form_tag organization_add_employee_path(@organization, :employee_email => :employee_email), :action => "add_employee", method: "get" do %>
+    <%= label_tag :employee_email, "Email: " %>
+    <%= text_field_tag :employee_email %>
+    <%= submit_tag "Add employee" %>
+<% end %>

@@ -10,8 +10,9 @@ class ProjectPolicy < ApplicationPolicy
         user.has_role? :view_projects
     end
     
-    def new?
-        user.has_role? :create_project
+    def create?
+        #Users should only be able to create projects in organizations they are a part of 
+        user.organizations.any? { |organization| organization.id == @project.organization_id }
     end
     
     def show?

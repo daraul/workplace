@@ -11,7 +11,8 @@ class UserPolicy < ApplicationPolicy
     end
     
     def show?
-        user.has_role? :view_employee
+        #Show the current user their colleagues
+        user.users.any? { |colleague| colleague[:id] == @employee.id }
     end
     
     def update?

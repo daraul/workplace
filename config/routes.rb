@@ -22,4 +22,9 @@ Rails.application.routes.draw do
     resources :time_entries
     
     resources :projects
+    
+    resources :organizations do
+        get 'remove_employee'
+        get 'add_employee'
+    end 
 end

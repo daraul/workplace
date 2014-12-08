@@ -15,18 +15,21 @@ class TimeEntriesController < ApplicationController
     
     def index
         @time_entries = TimeEntry.all
-        
-        authorize @time_entries
     end
     
     def new
         @time_entry = TimeEntry.new
         
-        authorize @time_entry
+        @colleagues = current_user.users.uniq
+        
+        @jobs = current_user.jobs
     end
     
     def create
         @time_entry = TimeEntry.new(time_entry_params)
+        
+        authorize @time_entry
+        
         @time_entry.save
         
         redirect_to job_path(time_entry_params[:job_id])
@@ -36,14 +39,10 @@ class TimeEntriesController < ApplicationController
     
     def show
         @time_entry = TimeEntry.find(params[:id])
-        
-        authorize @time_entry
     end
     
     def destroy
         @time_entry = TimeEntry.find(params[:id])
-        
-        authorize @time_entry
         
         job_id = @time_entry.job_id
         
@@ -56,8 +55,6 @@ class TimeEntriesController < ApplicationController
     
     def update
         @time_entry = TimeEntry.find(params[:id])
-        
-        authorize @time_entry
         
         @time_entry.update(job_params)
         

@@ -1,0 +1,10 @@
+<h1>Organizations</h1>
+<%= link_to "New organization", new_organization_path %> 
+
+<ul>
+    <% @organizations.each do |organization| %>
+        <li>
+            <%= link_to organization.name, organization_path(organization) %>
+        </li>
+    <% end %>
+</ul>

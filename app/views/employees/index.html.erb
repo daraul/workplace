@@ -1,9 +1,9 @@
-<h1>All employees</h1>
+<h1>All colleagues</h1>
 
 <ul>
-    <% @employees.each do |employee| %>
+    <% @colleagues.each do |colleague| %>
         <li>
-            <%= link_to employee.full_name, employee_path(employee) %>
+            <%= link_to colleague.full_name, employee_path(colleague) %>
         </li>
     <% end %>
 </ul>

@@ -16,13 +16,13 @@ class EmployeesController < ApplicationController
     def index
         @employees = User.all
         
-        authorize @employees
+        @colleagues = current_user.users.uniq
     end
     
     def show
         @employee = User.find(params[:id])
         
-        authorize @employee
+        authorize @employee 
         
         @jobs = @employee.jobs
         
@@ -37,8 +37,6 @@ class EmployeesController < ApplicationController
     
     def update 
         @employee = User.find(params[:id])
-        
-        authorize @employee
         
         if @employee.update(employee_params)
             @employee.add_role params[:user][:roles]

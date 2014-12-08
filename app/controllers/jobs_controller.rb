@@ -14,21 +14,30 @@ class JobsController < ApplicationController
     end
     
     def index
-        @jobs = Job.all
-        
-        authorize @jobs
+        @jobs = current_user.jobs
     end
     
     def new
         @job = Job.new
+        @colleagues = current_user.users.uniq
+        @projects = []
         
-        authorize @job
+        current_user.organizations.each do |organization|
+            organization.projects.each do |project|
+                @projects << project 
+            end 
+        end 
     end
     
     def create
         @job = Job.new(job_params)
         
-        if @job.save
+        #The project and employee assigned to the new job must both be a part of the same organization
+        #I need to find a way to get this error and create my own error message for it
+        project = Project.find(params[:job][:project_id])
+        employee = User.find(params[:job][:user_id])
+        
+        if @job.save && employee.organizations.any? { |organization| organization[:id] == project.organization.id }
             redirect_to job_path(Job.last)
             
             flash.notice = "Job '#{@job.title}' created!"
@@ -41,8 +50,6 @@ class JobsController < ApplicationController
     def show
         @job = Job.find(params[:id])
         
-        authorize @job
-        
         @employee = User.find(@job.user_id)
         
         @time_entries = @job.time_entries
@@ -53,8 +60,6 @@ class JobsController < ApplicationController
     def destroy
         @job = Job.find(params[:id])
         
-        authorize @job
-        
         @job.destroy
         
         flash.notice = "Job '#{@job.title}' deleted!"
@@ -64,8 +69,6 @@ class JobsController < ApplicationController
     
     def update
         @job = Job.find(params[:id])
-        
-        authorize @job
         
         if @job.update(job_params)
             redirect_to job_path(@job)

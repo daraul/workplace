@@ -1,4 +1,8 @@
 <h1><%= @project.name %></h1>
+
+<h2>Organization</h2>
+<%= link_to @project.organization.name, organization_path(@project.organization) %>
+
 <p>Team: </p>
 <ul>
     <% @team.each do |employee| %>
