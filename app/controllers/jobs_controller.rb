@@ -15,10 +15,15 @@ class JobsController < ApplicationController
     
     def index
         @jobs = current_user.jobs
+        
+        authorize @jobs
     end
     
     def new
         @job = Job.new
+        
+        authorize @job 
+        
         @colleagues = current_user.users.uniq
         @projects = []
         
@@ -31,6 +36,8 @@ class JobsController < ApplicationController
     
     def create
         @job = Job.new(job_params)
+        
+        authorize @job 
         
         #The project and employee assigned to the new job must both be a part of the same organization
         #I need to find a way to get this error and create my own error message for it
@@ -50,6 +57,8 @@ class JobsController < ApplicationController
     def show
         @job = Job.find(params[:id])
         
+        authorize @job
+        
         @employee = User.find(@job.user_id)
         
         @time_entries = @job.time_entries
@@ -60,6 +69,8 @@ class JobsController < ApplicationController
     def destroy
         @job = Job.find(params[:id])
         
+        authorize @job
+        
         @job.destroy
         
         flash.notice = "Job '#{@job.title}' deleted!"
@@ -69,6 +80,8 @@ class JobsController < ApplicationController
     
     def update
         @job = Job.find(params[:id])
+        
+        authorize @job
         
         if @job.update(job_params)
             redirect_to job_path(@job)

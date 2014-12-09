@@ -15,10 +15,14 @@ class TimeEntriesController < ApplicationController
     
     def index
         @time_entries = TimeEntry.all
+        
+        authorize @time_entrys 
     end
     
     def new
         @time_entry = TimeEntry.new
+        
+        authorize @time_entry
         
         @colleagues = current_user.users.uniq
         
@@ -39,10 +43,14 @@ class TimeEntriesController < ApplicationController
     
     def show
         @time_entry = TimeEntry.find(params[:id])
+        
+        authorize @time_entry
     end
     
     def destroy
         @time_entry = TimeEntry.find(params[:id])
+        
+        authorize @time_entry
         
         job_id = @time_entry.job_id
         
@@ -55,6 +63,8 @@ class TimeEntriesController < ApplicationController
     
     def update
         @time_entry = TimeEntry.find(params[:id])
+        
+        authorize @time_entry
         
         @time_entry.update(job_params)
         

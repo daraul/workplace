@@ -15,10 +15,14 @@ class ProjectsController < ApplicationController
     
     def index
         @projects = current_user.projects
+        
+        authorize @projects
     end
     
     def new
         @project = Project.new
+        
+        authorize @project
     end
     
     def create
@@ -49,6 +53,8 @@ class ProjectsController < ApplicationController
     def destroy
         @project = Project.find(params[:id])
         
+        authorize @project
+        
         @project.destroy
         
         flash.notice = "Project '#{@project.name}' deleted!"
@@ -58,6 +64,8 @@ class ProjectsController < ApplicationController
     
     def update
         @project = Project.find(params[:id])
+        
+        authorize @project
         
         @project.update(project_params)
         

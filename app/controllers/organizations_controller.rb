@@ -3,6 +3,8 @@ class OrganizationsController < ApplicationController
     
     def index 
         @organizations = current_user.organizations
+        
+        authorize @organizations 
     end
     
     def show 
@@ -17,10 +19,14 @@ class OrganizationsController < ApplicationController
     
     def new 
         @organization = Organization.new
+        
+        authorize @organization 
     end
     
     def create
         @organization = Organization.new(organization_params)
+        
+        authorize @organization 
         
         if @organization.save 
             @organization.users << current_user
@@ -42,6 +48,8 @@ class OrganizationsController < ApplicationController
     def update 
         @organization = Organization.find(params[:id])
         
+        authorize @organization 
+        
         #Rails kept throwing a param missing error, so I hacked this up to fix that 
         params[:organization] = { :name => @organization.name }
         
@@ -61,6 +69,8 @@ class OrganizationsController < ApplicationController
     def destroy 
         @organization = Organization.find(params[:id])
         
+        authorize @organization 
+        
         @organization.destroy
         
         flash.notice = "Organization '#{@organization.name}' deleted!"
@@ -71,6 +81,8 @@ class OrganizationsController < ApplicationController
     def add_employee
         @organization = Organization.find(params[:organization_id])
         
+        authorize @organization 
+        
         @organization.users << User.find_by(email: params[:employee_email])
         
         redirect_to organization_path(@organization)
@@ -78,6 +90,8 @@ class OrganizationsController < ApplicationController
     
     def remove_employee
         @organization = Organization.find(params[:organization_id])
+        
+        authorize @organization 
         
         @organization.users.delete(params[:employee_id])
             
