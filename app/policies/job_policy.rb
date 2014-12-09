@@ -15,11 +15,12 @@ class JobPolicy < ApplicationPolicy
     end 
     
     def create?
-        user.has_role? :create_job
+        true 
     end
     
     def show?
-        user.has_role? :view_job
+        #Check the the user is a part of the organization that the job's project is assigned to 
+        @user.organizations.any? { |organization| organization.id == @job.project.organization.id }
     end
     
     def destroy?
