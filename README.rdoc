@@ -1,0 +1,1 @@
+To use it just clone it, run migrations and start the server. 

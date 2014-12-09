@@ -1,0 +1,35 @@
+<%= form_for :job, url: jobs_path do |f| %>
+    <% if @job.errors.any? %>
+        <div id="error_explanation">
+            <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being created:</h2>
+            <ul>
+                <% @job.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                <% end %>
+            </ul>
+        </div>
+    <% end %>
+    <p>
+        <%= f.label :title %><br />
+        <%= f.text_field :title, :pattern => "^[A-z0-9\.\\\/\(\)\?\$\&\s]{5,500}$" %>
+    </p>
+    <p>
+        <%= f.label :description %><br />
+        <%= f.text_area :description, :pattern => "^[A-z0-9\.\\\/\(\)\?\$\&\,\s]{5,500}$/m" %>
+    </p>
+    <p>
+        <%= f.label :user_id %>
+        <%= f.collection_select(:user_id, @colleagues, :id, :full_name) %>
+    </p>
+    <p> 
+        <%= f.label :project %>
+        <%= f.collection_select(:project_id, @projects, :id, :name) %>
+    </p>
+    <p>
+        <%= f.label :complete %>
+        <%= f.check_box :complete %>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>

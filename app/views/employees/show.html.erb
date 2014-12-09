@@ -1,0 +1,34 @@
+<h1><%= @employee.full_name %></h1>
+<p>Email: <%= @employee.email %></p>
+
+<h3>Jobs</h3>
+<ul>
+    <% @jobs.each do |job| %>
+        <li>
+            <%= link_to job.title, job_path(job) %>
+        </li>
+    <% end %>
+</ul>
+
+<h3>Projects</h3>
+<ul>
+    <% @projects.each do |project| %>
+        <li>
+            <%= link_to project.name, project_path(project) %>
+        </li>
+    <% end %>
+</ul>
+
+<h3>Roles</h3>
+<ul>
+    <% @roles.sort.each do |role| %>
+        <li>
+            <%= role %>
+        </li>
+    <% end %>
+</ul>
+
+<% if @employee.has_role? "update_user" %>
+    <h3>Edit</h3>
+    <%= render partial: 'update' %>
+<% end %>

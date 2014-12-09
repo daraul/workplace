@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workplace</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<p class="flash"><%= flash.notice %></p>
+<p class="alert"><%= flash.alert %></p>
+<% if user_signed_in? %>
+    <%= link_to "Home", authenticated_root_path %>
+    <%= link_to "Projects", projects_path %>
+    <%= link_to "Employees", employees_path %>
+    <%= link_to "Organizations", organizations_path %>
+    <%= link_to "Jobs", jobs_path %>
+    <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+    <%= link_to current_user.full_name, employee_path(current_user) %>
+<% end %>
+<%= yield %>
+
+</body>
+</html>
