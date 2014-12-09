@@ -7,7 +7,7 @@ class UserPolicy < ApplicationPolicy
     end
     
     def index?
-        user.has_role? :view_employees
+        true 
     end
     
     def show?
@@ -16,6 +16,7 @@ class UserPolicy < ApplicationPolicy
     end
     
     def update?
-        user.has_role? :update_employee
+        #Users should be able to update themselves only. I'll add something more to this later on maybe
+        @user.id == @employee.id 
     end
 end
