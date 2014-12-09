@@ -7,16 +7,25 @@ class OrganizationPolicy < ApplicationPolicy
     end 
     
     def index? 
-        user.has_role? :view_organizations
+        true 
     end 
     
     def new?
-        user.has_role? :create_organization
+        true 
     end 
     
     #Check whether the user belongs to the organization 
     def show?
         user.organizations.any? { |organization| organization[:id] == @organization.id }
+    end 
+    
+    def create?
+        true 
+    end 
+    
+    def update?
+        #This should only work if the user CREATED the organization 
+        user.has_role? "created_organization_#{@organization.id}"
     end 
     
     def destroy?

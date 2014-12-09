@@ -43,8 +43,8 @@ class OrganizationsController < ApplicationController
         if @organization.save 
             @organization.users << current_user
             
-            #Add the role for the current_user to create projects in the organization they just created
-            current_user.add_role "create_project_in_organization_#{@organization.id}"
+            #Add the role to state that the user created this organization 
+            current_user.add_role "created_organization_#{@organization.id}"
             
             redirect_to organization_path(Organization.last)
             

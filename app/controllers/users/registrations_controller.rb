@@ -16,8 +16,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         organization.save
         organization.users << @user 
         
-        #Add the role for the user to create a project in their own organization
-        @user.add_role "create_project_in_organization_#{organization.id}"
+        #This role will help to find users that created organizations and allow them to edit those organizations
+        @user.add_role "created_organization_#{organization.id}"
     end
 
   # GET /resource/edit
