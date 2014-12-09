@@ -15,10 +15,14 @@ class ProjectsController < ApplicationController
     
     def index
         @projects = current_user.projects
+        
+        authorize @projects
     end
     
     def new
         @project = Project.new
+        
+        authorize @project
     end
     
     def create
@@ -39,6 +43,8 @@ class ProjectsController < ApplicationController
     def show
         @project = Project.find(params[:id])
         
+        authorize @project
+        
         @jobs = @project.jobs
         
         @team = @project.users.uniq
@@ -46,6 +52,8 @@ class ProjectsController < ApplicationController
     
     def destroy
         @project = Project.find(params[:id])
+        
+        authorize @project
         
         @project.destroy
         
@@ -56,6 +64,8 @@ class ProjectsController < ApplicationController
     
     def update
         @project = Project.find(params[:id])
+        
+        authorize @project
         
         @project.update(project_params)
         

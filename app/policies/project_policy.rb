@@ -7,8 +7,12 @@ class ProjectPolicy < ApplicationPolicy
     end
     
     def index?
-        user.has_role? :view_projects
+        true 
     end
+    
+    def new?
+        true 
+    end 
     
     def create?
         #Users should only be able to create projects in organizations they are a part of 
@@ -16,7 +20,8 @@ class ProjectPolicy < ApplicationPolicy
     end
     
     def show?
-        user.has_role? :view_project
+        #User should only be able to view projects that are assigned to their organizations
+        user.organizations.any? { |organization| organization.id == @project.organization_id }
     end
     
     def destroy?
