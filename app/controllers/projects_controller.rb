@@ -14,7 +14,7 @@ class ProjectsController < ApplicationController
     end
     
     def index
-        @projects = current_user.projects
+        @projects = current_user.projects.uniq 
         
         authorize @projects
     end

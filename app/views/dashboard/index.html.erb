@@ -1,9 +1,19 @@
 <h1>Dashboard</h1>
 
+<h2>Uncompleted jobs</h2>
 <ul>
     <% @jobs.each do |job| %>
         <li>
             <%= link_to job.title, job_path(job) %>
+        </li>
+    <% end %>
+</ul>
+
+<h2>Currently Assigned Projects</h2>
+<ul>
+    <% @projects.each do |project| %>
+        <li>
+            <%= link_to project.name, project_path(project) %>
         </li>
     <% end %>
 </ul>

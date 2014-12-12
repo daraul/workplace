@@ -14,7 +14,14 @@ class DashboardController < ApplicationController
     end
     
     def index
+        @user = current_user 
+        
+        authorize @user 
+        
         #Only show the user uncompleted jobs 
         @jobs = current_user.jobs.select { |key, value| key.complete == false }
+        
+        #Show the users currently assigned projects
+        @projects = current_user.projects.uniq 
     end 
 end
