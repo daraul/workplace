@@ -17,6 +17,9 @@ class ProjectsController < ApplicationController
         @projects = current_user.projects
         
         authorize @projects
+        
+        #This is a bit of a hack, but it prevents the same project showing up multiple times
+        @projects = current_user.projects.uniq 
     end
     
     def new

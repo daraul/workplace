@@ -34,11 +34,17 @@ class TimeEntriesController < ApplicationController
         
         authorize @time_entry
         
-        @time_entry.save
-        
-        redirect_to job_path(time_entry_params[:job_id])
-        
-        flash.notice = "Time entry created!"
+        #The time entry should only be assigned if the user that assigned it is assigned to that job 
+        if current_user.jobs.any? { |job| job.id.to_s == params[:time_entry][:job_id] }
+            
+            @time_entry.save
+            
+            redirect_to job_path(params[:time_entry][:job_id])
+            
+            flash.notice = "Time entry created!"
+        else 
+            fail "You're not authorized to do that!"
+        end 
     end
     
     def show
@@ -59,17 +65,5 @@ class TimeEntriesController < ApplicationController
         redirect_to job_path(job_id)
         
         flash.notice = "Time entry deleted!"
-    end
-    
-    def update
-        @time_entry = TimeEntry.find(params[:id])
-        
-        authorize @time_entry
-        
-        @time_entry.update(job_params)
-        
-        flash.notice = "Time entry updated!"
-        
-        redirect_to job_path(time_entry_params[:job_id])
     end
 end

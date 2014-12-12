@@ -7,23 +7,19 @@ class TimeEntryPolicy < ApplicationPolicy
     end
     
     def index?
-        user.has_role? :view_time_entries
+        true 
     end
     
     def create?
-        user = User.find(@time_entry.user_id)
-        user.jobs.any? { |job| job.id == @time_entry.job.id }
+        true 
     end 
     
     def show?
-        user.has_role? :view_time_entry
+        true 
     end
     
     def destroy?
-        user.has_role? :delete_time_entry
-    end
-    
-    def update?
-        user.has_role? :update_time_entry
+        #Users should only be able to delete time entries for jobs they are assigned to 
+        @user.jobs.any? { |job| job.id == @time_entry.job.id }
     end
 end

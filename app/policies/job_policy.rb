@@ -28,6 +28,7 @@ class JobPolicy < ApplicationPolicy
     end
     
     def update?
-        user.has_role? :update_job
+        #User should be able to update jobs they are assigned to 
+        @user.jobs.any? { |job| job.id == @job.id }
     end
 end
