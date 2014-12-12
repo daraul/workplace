@@ -66,16 +66,4 @@ class TimeEntriesController < ApplicationController
         
         flash.notice = "Time entry deleted!"
     end
-    
-    def update
-        @time_entry = TimeEntry.find(params[:id])
-        
-        authorize @time_entry
-        
-        @time_entry.update(job_params)
-        
-        flash.notice = "Time entry updated!"
-        
-        redirect_to job_path(time_entry_params[:job_id])
-    end
 end
