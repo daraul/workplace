@@ -10,9 +10,10 @@
         </div>
     <% end %>
     <p>
-        <%= f.label :name %><br />
-        <%= f.text_field :name, :pattern => '^[A-z0-9\.\\\/\(\)\?\$\&\s]{6,35}$' %>
+        <%= f.label :name, :for => 'project_name_field' %><br />
+        <%= f.text_field :name, :pattern => '^[A-z0-9\.\\\/\(\)\?\$\&\s]{6,35}$', :maxlength => 35, :id => 'project_name_field' %>
     </p>
+    <div id="project_name_field_feedback"></div>
     <p>
         <%= f.label :organization %><br />
         <%= f.collection_select(:organization_id, current_user.organizations, :id, :name) %>
