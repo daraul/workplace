@@ -13,3 +13,9 @@ $ ->
         text_remaining = project_title_max_length - text_length
         
         $('#project_name_field_feedback').html "#{text_remaining} characters remaining"
+        
+    $('#project_name_field').keydown ->
+        text_length = $('#project_name_field').val().length
+        text_remaining = project_title_max_length - text_length
+        
+        $('#project_name_field_feedback').html "#{text_remaining} characters remaining"
