@@ -7,15 +7,27 @@ $ ->
     $('#project_name_field').attr "aria-required", "true"
     
     project_title_max_length = 35
+    project_title_min_length = 6 
     
     $('#project_name_field').keyup ->
         text_length = $('#project_name_field').val().length
         text_remaining = project_title_max_length - text_length
         
-        $('#project_name_field_feedback').html "#{text_remaining} characters remaining"
+        if text_length < 6
+            text_needed = project_title_min_length - text_length
+            $('#project_name_field_feedback').html "#{text_needed} characters needed"
+        
+        else
+            $('#project_name_field_feedback').html "#{text_remaining} characters remaining"
         
     $('#project_name_field').keydown ->
         text_length = $('#project_name_field').val().length
         text_remaining = project_title_max_length - text_length
         
-        $('#project_name_field_feedback').html "#{text_remaining} characters remaining"
+        if text_length < 6
+            text_needed = project_title_min_length - text_length
+            $('#project_name_field_feedback').html "#{text_needed} characters needed"
+        
+        else
+            $('#project_name_field_feedback').html "#{text_remaining} characters remaining"
+        
