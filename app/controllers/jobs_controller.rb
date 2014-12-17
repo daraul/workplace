@@ -39,6 +39,15 @@ class JobsController < ApplicationController
         
         authorize @job 
         
+        @colleagues = current_user.users.uniq
+        @projects = []
+        
+        current_user.organizations.each do |organization|
+            organization.projects.each do |project|
+                @projects << project 
+            end 
+        end 
+        
         #The project and employee assigned to the new job must both be a part of the same organization
         #I need to find a way to get this error and create my own error message for it
         project = Project.find(params[:job][:project_id])
