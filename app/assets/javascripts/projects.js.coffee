@@ -4,8 +4,6 @@
 
 # This line is apparently needed to execute the code AFTER the document is ready. Otherwise this won't work :( 
 $ ->
-    $('#project_name_field').attr "aria-required", "true"
-    
     project_title_max_length = 35
     project_title_min_length = 6 
     
