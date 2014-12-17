@@ -11,8 +11,9 @@
     <% end %>
     <p>
         <%= f.label :name %><br />
-        <%= f.text_field :name %>
+        <%= f.text_field :name, :id => "organization_name_field", :required => true, :pattern => '^[A-z0-9\.\\\/\(\)\?\$\&\s]{6,35}$', :maxlength => 35, :title => "Must be between 6 and 35 characters long with only these special characters: '. \ / ( ) ? $ &" %>
     </p>
+    <div id="organization_name_field_feedback"></div>
     <p>
         <%= f.submit %>
     </p>
