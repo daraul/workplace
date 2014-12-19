@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$ ->
+ready = ->
     organization_title_max_length = 35
     organization_title_min_length = 6 
     
@@ -28,3 +28,5 @@ $ ->
         else
             $('#organization_name_field_feedback').html "#{text_remaining} characters remaining"
         
+        
+$(document).on('page:change', ready)

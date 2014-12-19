@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 # This line is apparently needed to execute the code AFTER the document is ready. Otherwise this won't work :( 
-$ ->
+ready = ->
     project_title_max_length = 35
     project_title_min_length = 6 
     
@@ -29,3 +29,4 @@ $ ->
         else
             $('#project_name_field_feedback').html "#{text_remaining} characters remaining"
         
+$(document).on('page:change', ready)
