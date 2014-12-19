@@ -1,4 +1,4 @@
-<%= form_for :project, url: projects_path do |f| %>
+<%= form_for :project, :html => { :id => "new_project_form" }, url: projects_path do |f| %>
     <% if @project.errors.any? %>
         <div id="error_explanation">
             <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being created:</h2>
@@ -11,7 +11,7 @@
     <% end %>
     <p>
         <%= f.label :name, :for => 'project_name_field' %><br />
-        <%= f.text_field :name, :pattern => '^[A-z0-9\.\\\/\(\)\?\$\&\s]{6,35}$', :maxlength => 35, :id => 'project_name_field', :required => true, :title => "Must be between 6 and 35 characters long with only these special characters: '. \ / ( ) ? $ &" %>
+        <%= f.text_field :name, :pattern => '^[A-z0-9\.\\\/\(\)\?\$\&\s]{6,35}$', :maxlength => 35, :id => 'project_name_field', :required => true, :title => "Must be between 6 and 35 characters long with only these special characters: . \ / ( ) ? $ &" %>
     </p>
     <div id="project_name_field_feedback"></div>
     <p>

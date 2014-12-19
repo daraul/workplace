@@ -7,7 +7,6 @@ ready = ->
     job_title_min_length = 5
     
     $('#job_title_field').keyup ->
-        console.log 'key pressed!'
         text_length = $('#job_title_field').val().length
         text_remaining = job_title_max_length - text_length
         

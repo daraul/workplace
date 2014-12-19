@@ -1,4 +1,4 @@
-<%= form_for :job, :id => "new_job_form", url: jobs_path do |f| %>
+<%= form_for :job, :html => { :id => "new_job_form" }, url: jobs_path do |f| %>
     <% if @job.errors.any? %>
         <div id="error_explanation">
             <h2><%= pluralize(@job.errors.count, "error") %> prohibited this job from being created:</h2>
