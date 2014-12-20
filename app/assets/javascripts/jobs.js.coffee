@@ -60,12 +60,22 @@ ready = ->
     #Putting this at the top of the JS file for some reason broke the character coutners. I'm not sure why, but putting it down here seems to work fine 
      $('#new_job_form').submit -> 
         job_description_regex = /^[A-z0-9\.\\\/\(\)\?\$\&\,\s]{5,500}$/
+        job_title_regex = /^[A-z0-9\.\\\/\(\)\?\$\&\s]{5,60}$/
         
-        if job_description_regex.test($('#job_description_field').val())
-            return true 
-        else 
+        #Validate the job title first 
+        if job_title_regex.test($('#job_title_field').val())
+            #If the job title passes, then test the description next 
+            if job_description_regex.test($('#job_description_field').val())
+                return true 
+            else 
+                $('input[type="submit"]').blur() #You have to blur the submit button 
+                $('#job_description_field').focus() #to get to the job description 
+                $('#job_description_field_feedback').html "Something was wrong here!"
+                return false 
+        else  
             $('input[type="submit"]').blur() #You have to blur the submit button 
-            $('#job_description_field').focus() #to get to the job description 
+            $('#job_title_field').focus() #to get to the job description 
+            $('#job_title_field_feedback').html "Something was wrong here!"
             return false 
             
 $(document).on('page:change', ready)
