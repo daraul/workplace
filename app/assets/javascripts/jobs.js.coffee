@@ -64,7 +64,8 @@ ready = ->
         if job_description_regex.test($('#job_description_field').val())
             return true 
         else 
-            console.log "Input was invalid!"
+            $('input[type="submit"]').blur() #You have to blur the submit button 
+            $('#job_description_field').focus() #to get to the job description 
             return false 
             
 $(document).on('page:change', ready)
