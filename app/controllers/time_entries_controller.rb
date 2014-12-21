@@ -34,16 +34,19 @@ class TimeEntriesController < ApplicationController
         
         authorize @time_entry
         
+        @colleagues = current_user.users.uniq
+        
+        @jobs = current_user.jobs
+        
         #The time entry should only be assigned if the user that assigned it is assigned to that job 
-        if current_user.jobs.any? { |job| job.id.to_s == params[:time_entry][:job_id] }
-            
-            @time_entry.save
+        if current_user.jobs.any? { |job| job.id.to_s == params[:time_entry][:job_id] } && @time_entry.save
             
             redirect_to job_path(params[:time_entry][:job_id])
             
             flash.notice = "Time entry created!"
         else 
-            fail "You're not authorized to do that!"
+            render 'new'
+            flash.notice = "Something was wrong with your input!"
         end 
     end
     
