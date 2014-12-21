@@ -28,5 +28,14 @@ ready = ->
         
         else
             $('#project_name_field_feedback').html "#{text_remaining} characters remaining"
+            
+    $('#new_project_form').submit ->
+        project_title_regex = /[A-z0-9\.\\\/\(\)\?\$\&\s]{6,35}/
+        
+        if project_title_regex.test($('#project_name_field').val())
+            return true 
+        else 
+            $('#project_name_field_feedback').html "Something was wrong here!"
+            return false 
         
 $(document).on('page:change', ready)
