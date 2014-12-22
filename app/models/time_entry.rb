@@ -5,6 +5,14 @@ class TimeEntry < ActiveRecord::Base
     validates :job_id, presence: true, format: { with: /\d+/, message: "can only be a number."  }
     validates :user_id, presence: true, format: { with: /\d+/, message: "can only be a number."  }
     
+    validate :start_is_before_finish, on: :create, message: "testing!"
+    
+    def start_is_before_finish
+        if (start && finish) && finish < start
+            errors.add(:time_entry, "finish cannot be before start!")
+        end 
+    end 
+    
     belongs_to :job
     belongs_to :user
 end
