@@ -6,24 +6,29 @@
     </ul>
     <p>
         <%= f.label :description %><br />
-        <%= f.text_area :description %>
+        <%= f.text_area :description, :id => "time_entry_description", :maxlength => 500, :title => "Must be between 5 and 500 characters long with only these special characters: '. \ / ( ) ? $ &", :required => "true" %>
     </p>
+    <div id="time_entry_description_feedback"></div>
     <p>
         <%= f.label :start %><br />
         <%= f.datetime_select :start %>
     </p>
+    <div id="time_entry_start_feedback"></div>
     <p>
         <%= f.label :finish %>
         <%= f.datetime_select :finish %>
     </p>
+    <div id="time_entry_finish_feedback"></div>
     <p>
         <%= f.label :job_id %>
         <%= f.collection_select(:job_id, @jobs, :id, :title) %>
     </p>
+    <div id="time_entry_job_id_feedback"></div>
     <p>
         <%= f.label :user_id %>
         <%= f.collection_select(:user_id, @colleagues, :id, :full_name) %>
     </p>
+    <div id="time_entry_user_id_feedback"></div>
     <p>
         <%= f.submit %>
     </p>

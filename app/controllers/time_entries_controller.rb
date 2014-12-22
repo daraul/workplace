@@ -30,6 +30,7 @@ class TimeEntriesController < ApplicationController
     end
     
     def create
+        #fail params[:time_entry]["start(1i)"]
         @time_entry = TimeEntry.new(time_entry_params)
         
         authorize @time_entry
