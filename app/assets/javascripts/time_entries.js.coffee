@@ -3,6 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 ready = ->
+    $("#time_entry_start").datetimepicker()
+    $("#time_entry_finish").datetimepicker()
+    
     time_entry_description_length_max = 500
     time_entry_description_length_min = 5 
     
@@ -38,9 +41,9 @@ ready = ->
         
         if time_entry_description_regex.test($("#time_entry_description").val())
             #Description passes, test the start date 
-            if year_regex.test($("#time_entry_start_1i").val()) && month_regex.test($("#time_entry_start_2i").val()) && day_regex.test($("#time_entry_start_3i").val()) && hour_regex.test($("#time_entry_start_4i").val()) && minute_regex.test($("#time_entry_start_5i").val())
+            if $("#time_entry_start").val()
                 #Start date passes. Test that the Finish date passes as well and that it is AFTER the start date 
-                if year_regex.test($("#time_entry_finish_1i").val()) && month_regex.test($("#time_entry_finish_2i").val()) && day_regex.test($("#time_entry_finish_3i").val()) && hour_regex.test($("#time_entry_finish_4i").val()) && minute_regex.test($("#time_entry_finish_5i").val())
+                if $("#time_entry_finish").val()
                     #Finish date passes, test the job_id next 
                     if isNaN($("#time_entry_job_id").val())
                         $("#time_entry_job_id_feedback").html "Job ID must be a number!"
