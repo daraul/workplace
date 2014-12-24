@@ -33,17 +33,13 @@ ready = ->
 
     $('#new_time_entry_form').submit ->
         time_entry_description_regex = /^[A-z0-9\.\\\/\(\)\?\$\&\,\s]{5,500}$/
-        year_regex = /^\d{1,4}$/
-        month_regex = /^[1-9]$|^1[0-2]$/
-        day_regex = /^[1-9]$|^(1|2)[0-9]$|^3[0-1]$/
-        hour_regex = /^(0|1)[0-9]$|^2[0-3]$/
-        minute_regex = /^[0-5][0-9]$/
+        date_time_regex = /^((19[7-9][0-9])|(2[0-9][0-9][0-9]))\/((0[1-9])|(1[0-2]))\/(([0-2][0-9])|(3[0-1]))\s(([0-1][0-9])|(2[0-4]))\:([0-5][0-9])$/
         
         if time_entry_description_regex.test($("#time_entry_description").val())
             #Description passes, test the start date 
-            if $("#time_entry_start").val()
+            if date_time_regex.test($("#time_entry_start").val())
                 #Start date passes. Test that the Finish date passes as well and that it is AFTER the start date 
-                if $("#time_entry_finish").val()
+                if date_time_regex.test($("#time_entry_finish").val())
                     #Finish date passes, test the job_id next 
                     if isNaN($("#time_entry_job_id").val())
                         $("#time_entry_job_id_feedback").html "Job ID must be a number!"
