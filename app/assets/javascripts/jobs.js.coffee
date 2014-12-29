@@ -58,7 +58,7 @@ ready = ->
             
     #Validate the new job form 
     #Putting this at the top of the JS file for some reason broke the character coutners. I'm not sure why, but putting it down here seems to work fine 
-     $('#new_job_form').submit -> 
+     $('#new_job_form, #update_job_form').submit -> 
         job_description_regex = /^[A-z0-9\.\\\/\(\)\?\$\&\,\s]{5,500}$/
         job_title_regex = /^[A-z0-9\.\\\/\(\)\?\$\&\s]{5,60}$/
         
