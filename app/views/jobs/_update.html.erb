@@ -1,4 +1,4 @@
-<%= form_for @job, :url => { action: "update" } do |f| %>
+<%= form_for :job, :method => :patch, :html => { :id => "update_job_form" } do |f| %>
     <% if @job.errors.any? %>
         <div id="error_explanation">
             <h2><%= pluralize(@job.errors.count, "error") %> prohibited this project from being created:</h2>
@@ -11,19 +11,21 @@
     <% end %>
     <p>
         <%= f.label :title %><br />
-        <%= f.text_field :title, :pattern => "^[A-z0-9\.\\\/\(\)\?\$\&\s]{5,500}$" %>
+        <%= f.text_field :title, :pattern => "^[A-z0-9\.\\\/\(\)\?\$\&\s]{5,60}$", :maxlength => 60, :id => 'job_title_field', :required => true, :title => "Must be between 5 and 60 characters long with only these special characters: '. \ / ( ) ? $ &" %>
     </p>
+    <div id="job_title_field_feedback"></div>
     <p>
         <%= f.label :description %><br />
-        <%= f.text_area :description, :pattern => "^[A-z0-9\.\\\/\(\)\?\$\&\,\s]{5,500}$/m" %>
+        <%= f.text_area :description, :required => true, :id => 'job_description_field', :maxlength => 500, :title => "Must be between 5 and 500 characters long with only these special characters: '. \ / ( ) ? $ &" %>
     </p>
+    <div id="job_description_field_feedback"></div>
     <p>
         <%= f.label :user_id %>
-        <%= f.collection_select(:user_id, User.all, :id, :full_name) %>
+        <%= f.collection_select(:user_id, @colleagues, :id, :full_name) %>
     </p>
     <p> 
         <%= f.label :project %>
-        <%= f.collection_select(:project_id, Project.all, :id, :name) %>
+        <%= f.collection_select(:project_id, @projects, :id, :name) %>
     </p>
     <p>
         <%= f.label :complete %>

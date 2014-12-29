@@ -73,6 +73,15 @@ class JobsController < ApplicationController
         @time_entries = @job.time_entries
         
         @project = @job.project
+        
+        @colleagues = current_user.users.uniq
+        @projects = []
+        
+        current_user.organizations.each do |organization|
+            organization.projects.each do |project|
+                @projects << project 
+            end 
+        end 
     end
     
     def destroy
@@ -92,12 +101,28 @@ class JobsController < ApplicationController
         
         authorize @job
         
+        @employee = User.find(@job.user_id)
+        
+        @project = @job.project
+        
+        @time_entries = @job.time_entries
+        
+        @colleagues = current_user.users.uniq
+        @projects = []
+        
+        current_user.organizations.each do |organization|
+            organization.projects.each do |project|
+                @projects << project 
+            end 
+        end 
+        
         if @job.update(job_params)
             redirect_to job_path(@job)
             
             flash.notice = "Job '#{@job.title}' updated!"
         else
             render 'show'
+            flash.notice = "Something was wrong with your input!"
         end
     end
 end
