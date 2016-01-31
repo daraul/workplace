@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  #id: 1
+  title: First Checklist 
+  description: This one should have two children, the second and third checklists.
+
+two:
+  #id: 2
+  title: Second Checklist 
+  description: This one should have one child, the third checklist and one parent, the first checklist.
+  
+three:
+  #id: 3
+  title: Third Checklist 
+  description: This one should be a child of the first two checklists.
+
+four:
+  #id: 4
+  title: Fourth Checklist 
+  description: This one doesn't have any children or parents.
