@@ -15,10 +15,13 @@ class ChecklistsController < ApplicationController
   # GET /checklists/new
   def new
     @checklist = Checklist.new
+    
+    @checklists = Checklist.all
   end
 
   # GET /checklists/1/edit
   def edit
+      @checklists = Checklist.all
   end
 
   # POST /checklists
@@ -65,10 +68,12 @@ class ChecklistsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_checklist
       @checklist = Checklist.find(params[:id])
+      @children = @checklist.children
+      @parents = @checklist.parents
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def checklist_params
-      params.require(:checklist).permit(:title, :description)
+      params.require(:checklist).permit(:title, :description, child_ids: [], parent_ids: [])
     end
 end

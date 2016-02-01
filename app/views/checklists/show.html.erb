@@ -1,14 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @checklist.title %>
-</p>
+<%= render @checklist %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @checklist.description %>
-</p>
+<h2>Parents</h2>
+<%= render @parents %>
 
-<%= link_to 'Edit', edit_checklist_path(@checklist) %> |
-<%= link_to 'Back', checklists_path %>
+<h2>Children</h2>
+<%= render @children %>
+
+<%= link_to 'Home', checklists_path %>

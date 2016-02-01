@@ -2,27 +2,7 @@
 
 <h1>Listing Checklists</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @checklists.each do |checklist| %>
-      <tr>
-        <td><%= checklist.title %></td>
-        <td><%= checklist.description %></td>
-        <td><%= link_to 'Show', checklist %></td>
-        <td><%= link_to 'Edit', edit_checklist_path(checklist) %></td>
-        <td><%= link_to 'Destroy', checklist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render @checklists, title: true %>
 
 <br>
 
