@@ -9,13 +9,13 @@ class Checklist < ActiveRecord::Base
     
     def disallow_self_referential_child
         if child_ids.include? id 
-            errors.add(:child_id, 'cannot self reference!')
+            errors.add(:children, 'cannot include self!')
         end 
     end 
     
     def disallow_self_referential_parent
         if parent_ids.include? id 
-            errors.add(:parent_id, "cannot self reference!")
+            errors.add(:parents, "cannot include self!")
         end 
     end 
 end
