@@ -22,4 +22,14 @@ class TodoTest < ActiveSupport::TestCase
         assert todos('three').parents.count == 2, "Third checklist has #{todos('three').parents.count} parents"
         assert todos('three').children.count == 0, "Third checklist has #{todos('three').children.count} children"
     end 
+    
+    test "completing all child todos completes parent" do 
+        todos('one').children << todos('three')
+        todos('one').children << todos('two')
+        
+        todos('two').completed = true
+        todos('two').save 
+        
+        assert todos('one').completed == true, "Completing all child todos does not complete parent"
+    end 
 end
