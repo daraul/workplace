@@ -7,6 +7,8 @@ class Checklist < ActiveRecord::Base
     validate :disallow_self_referential_child
     validate :disallow_self_referential_parent
     
+    validate :disallow_identical_parent_child_reference
+    
     def disallow_self_referential_child
         if child_ids.include? id 
             errors.add(:children, 'cannot include self!')
@@ -16,6 +18,15 @@ class Checklist < ActiveRecord::Base
     def disallow_self_referential_parent
         if parent_ids.include? id 
             errors.add(:parents, "cannot include self!")
+        end 
+    end 
+    
+    def disallow_identical_parent_child_reference
+        parent_ids.each do |parent_id|
+            if child_ids.include? parent_id 
+                errors.add(:parents, 'cannot include a child!')
+                return 
+            end 
         end 
     end 
 end
