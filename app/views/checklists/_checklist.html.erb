@@ -1,8 +1,0 @@
-<h1 class="title"><%= link_to(checklist.title, checklist) %></h1>
-
-<% if defined?(title) && title == true %>
-<% else %>
-  <p class="description"><%= checklist.description %></p>
-<% end %>
-<%= link_to 'Edit', edit_checklist_path(checklist) %>
-<%= link_to 'Destroy', checklist, method: :delete, data: { confirm: 'Are you sure?' } %>
