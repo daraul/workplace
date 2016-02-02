@@ -11,21 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160129154747) do
+ActiveRecord::Schema.define(version: 20160202162109) do
 
-  create_table "checklists", force: :cascade do |t|
+  create_table "todos", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
+    t.boolean  "completed"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "checklists_checklists", id: false, force: :cascade do |t|
+  create_table "todos_todos", id: false, force: :cascade do |t|
     t.integer "parent_id"
     t.integer "child_id"
   end
 
-  add_index "checklists_checklists", ["child_id"], name: "index_checklists_checklists_on_child_id"
-  add_index "checklists_checklists", ["parent_id"], name: "index_checklists_checklists_on_parent_id"
+  add_index "todos_todos", ["child_id"], name: "index_todos_todos_on_child_id"
+  add_index "todos_todos", ["parent_id"], name: "index_todos_todos_on_parent_id"
 
 end

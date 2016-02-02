@@ -1,8 +1,9 @@
-class CreateChecklists < ActiveRecord::Migration
+class CreateTodos < ActiveRecord::Migration
   def change
-    create_table :checklists do |t|
+    create_table :todos do |t|
       t.string :title
       t.text :description
+      t.boolean :completed
 
       t.timestamps null: false
     end
