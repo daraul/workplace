@@ -1,5 +1,6 @@
 class ChecklistsController < ApplicationController
   before_action :set_checklist, only: [:show, :edit, :update, :destroy]
+  before_action :set_checklists, only: [:new, :edit, :create, :update]
 
   # GET /checklists
   # GET /checklists.json
@@ -15,13 +16,10 @@ class ChecklistsController < ApplicationController
   # GET /checklists/new
   def new
     @checklist = Checklist.new
-    
-    @checklists = Checklist.all
   end
 
   # GET /checklists/1/edit
   def edit
-      @checklists = Checklist.all
   end
 
   # POST /checklists
@@ -71,6 +69,10 @@ class ChecklistsController < ApplicationController
       @children = @checklist.children
       @parents = @checklist.parents
     end
+    
+    def set_checklists
+        @checklists = Checklist.all
+    end 
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def checklist_params
