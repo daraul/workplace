@@ -1,0 +1,8 @@
+<h1 class="title"><%= link_to(todo.title, todo) %></h1>
+
+<% if defined?(title) && title == true %>
+<% else %>
+  <p class="description"><%= todo.description %></p>
+<% end %>
+<%= link_to 'Edit', edit_todo_path(todo) %>
+<%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %>

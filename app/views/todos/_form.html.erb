@@ -20,6 +20,14 @@
     <%= f.text_area :description %>
   </div>
   <div class="field">
+      <%= f.label :children %><br>
+      <%= f.collection_select( :child_ids, @todos, :id, :title, {}, html_options = { :multiple => true } ) %>
+  </div>
+  <div class="field">
+      <%= f.label :parents %><br>
+      <%= f.collection_select( :parent_ids, @todos, :id, :title, {}, html_options = { :multiple => true } ) %>
+  </div>
+  <div class="field">
     <%= f.label :completed %><br>
     <%= f.check_box :completed %>
   </div>

@@ -1,19 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @todo.title %>
-</p>
+<%= render @todo %>
 
-<p>
-  <strong>Description:</strong>
-  <%= @todo.description %>
-</p>
+<h2>Parents</h2>
+<%= render @parents %>
 
-<p>
-  <strong>Completed:</strong>
-  <%= @todo.completed %>
-</p>
+<h2>Children</h2>
+<%= render @children %>
 
-<%= link_to 'Edit', edit_todo_path(@todo) %> |
 <%= link_to 'Back', todos_path %>
