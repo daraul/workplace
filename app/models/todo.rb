@@ -11,6 +11,8 @@ class Todo < ActiveRecord::Base
     
     validate :disallow_identical_parent_child_reference
     
+    validate :disallow_completion_unless_all_children_completed
+    
     def disallow_self_referential_child
         if child_ids.include? id 
             errors.add(:children, 'cannot include self!')
@@ -27,6 +29,15 @@ class Todo < ActiveRecord::Base
         parent_ids.each do |parent_id|
             if child_ids.include? parent_id 
                 errors.add(:parents, 'cannot include a child!')
+                return 
+            end 
+        end 
+    end 
+    
+    def disallow_completion_unless_all_children_completed
+        children.each do |child|
+            if child.completed != true 
+                errors.add(:completed, 'cannot be true unless all children are completed!')
                 return 
             end 
         end 
