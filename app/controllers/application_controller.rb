@@ -11,7 +11,23 @@ class ApplicationController < ActionController::Base
     end
     
     def require_user 
-        redirect_to '/login' unless current_user 
-        flash.notice = "You need to log in or sign up."
+        if !current_user
+            redirect_to '/login' 
+            flash.notice = "You need to log in or sign up."
+        end 
     end
+    
+    def check_session
+        if current_user 
+            redirect_to root_path 
+            flash.notice = "You're already logged in!"
+        end 
+    end 
+    
+    def check_registration 
+        if User.all.include?(current_user)
+            redirect_to root_path
+            flash.notice = "You're already registered!"
+        end 
+    end 
 end

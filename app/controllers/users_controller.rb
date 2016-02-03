@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     skip_before_filter :require_user, only: [:new, :create]
+    before_action :check_registration, only: [:new, :create]
     
     def new 
         @user = User.new 

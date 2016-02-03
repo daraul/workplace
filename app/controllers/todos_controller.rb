@@ -3,6 +3,7 @@ class TodosController < ApplicationController
   before_action :set_new_todo, only: [:create]
   before_action :set_todos, only: [:index, :new, :edit, :create, :update]
     before_action :assign_user, only: [:create]
+    before_action :verify_user, only: [:show, :edit, :update, :destroy]
 
   # GET /todos
   # GET /todos.json
@@ -79,6 +80,13 @@ class TodosController < ApplicationController
     
     def assign_user
         @todo.user = current_user
+    end 
+    
+    def verify_user
+        if current_user != @todo.user 
+            redirect_to todos_path
+            flash.notice = "You're not allowed to do that!"
+        end 
     end 
 
     # Never trust parameters from the scary internet, only allow the white list through.
