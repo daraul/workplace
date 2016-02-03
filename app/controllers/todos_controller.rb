@@ -1,11 +1,12 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: [:show, :edit, :update, :destroy]
-  before_action :set_todos, only: [:new, :edit, :create, :update]
+  before_action :set_new_todo, only: [:create]
+  before_action :set_todos, only: [:index, :new, :edit, :create, :update]
+    before_action :assign_user, only: [:create]
 
   # GET /todos
   # GET /todos.json
   def index
-    @todos = Todo.all
   end
 
   # GET /todos/1
@@ -25,8 +26,6 @@ class TodosController < ApplicationController
   # POST /todos
   # POST /todos.json
   def create
-    @todo = Todo.new(todo_params)
-
     respond_to do |format|
       if @todo.save
         format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
@@ -71,11 +70,19 @@ class TodosController < ApplicationController
     end
     
     def set_todos 
-        @todos = Todo.all 
+        @todos = current_user.todos
+    end 
+    
+    def set_new_todo
+        @todo = Todo.new(todo_params)
+    end 
+    
+    def assign_user
+        @todo.user = current_user
     end 
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_params
-      params.require(:todo).permit(:title, :description, :completed, child_ids: [], parent_ids: [])
+      params.require(:todo).permit(:title, :description, :completed, child_ids: [], parent_ids: [] )
     end
 end

@@ -17,9 +17,12 @@ ActiveRecord::Schema.define(version: 20160203011537) do
     t.string   "title"
     t.text     "description"
     t.boolean  "completed"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
+
+  add_index "todos", ["user_id"], name: "index_todos_on_user_id"
 
   create_table "todos_todos", id: false, force: :cascade do |t|
     t.integer "parent_id"
