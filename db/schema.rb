@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160202162109) do
+ActiveRecord::Schema.define(version: 20160203011537) do
 
   create_table "todos", force: :cascade do |t|
     t.string   "title"
@@ -28,5 +28,14 @@ ActiveRecord::Schema.define(version: 20160202162109) do
 
   add_index "todos_todos", ["child_id"], name: "index_todos_todos_on_child_id"
   add_index "todos_todos", ["parent_id"], name: "index_todos_todos_on_parent_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
 end
