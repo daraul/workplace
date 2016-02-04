@@ -61,4 +61,10 @@ class TodoTest < ActiveSupport::TestCase
         
         assert todo.save, "Todo did not save with empty description"
     end 
+    
+    test "todo title length" do 
+        todo = Todo.new(:title => "A0123456789012345678901234567890123456789012345678", :description => "", :user => users(:one), :completed => false)
+        
+        assert todo.save, "Todo title is #{todo.title.length} characters long."
+    end 
 end
