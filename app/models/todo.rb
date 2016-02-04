@@ -2,8 +2,8 @@ class Todo < ActiveRecord::Base
     after_save :complete_parents_if_siblings_completed
     after_save :uncomplete_parents_if_uncompleted
     
-    has_and_belongs_to_many :children, class_name: "Todo", join_table: "todos_todos", foreign_key: "parent_id", association_foreign_key: :child_id
-    has_and_belongs_to_many :parents, class_name: "Todo", join_table: "todos_todos", foreign_key: "child_id", association_foreign_key: :parent_id
+    has_and_belongs_to_many :children, class_name: "Todo", join_table: "todos_todos", foreign_key: "parent_id", association_foreign_key: :child_id, before_add: [:disallow_self_referential_child]
+    has_and_belongs_to_many :parents, class_name: "Todo", join_table: "todos_todos", foreign_key: "child_id", association_foreign_key: :parent_id, before_add: [:disallow_self_referential_parent]
     
     belongs_to :user
     
@@ -13,20 +13,17 @@ class Todo < ActiveRecord::Base
     
     validates :description, length: { in: 10..255, message: "must be 10 to 255 characters long!" }, format: { with: /\A[\w\!\,\.\(\)\&\^\@\#\$\{\}\"\'\\\/\|\;\:\+\-\%\<\>\*\?\=\~\`\s]+\z/, message: "must be alphanumeric and can include white space or these characters: w!,.()&^@#${}\"'\/|;:+-%<>*?=s~`" }
     
-    validate :disallow_self_referential_child
-    validate :disallow_self_referential_parent
-    
     validate :disallow_identical_parent_child_reference
     
     validate :disallow_completion_unless_all_children_completed
     
-    def disallow_self_referential_child
+    def disallow_self_referential_child(children)
         if child_ids.include? id 
             errors.add(:children, 'cannot include self!')
         end 
     end 
     
-    def disallow_self_referential_parent
+    def disallow_self_referential_parent(parents)
         if parent_ids.include? id 
             errors.add(:parents, "cannot include self!")
         end 

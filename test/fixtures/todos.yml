@@ -3,23 +3,27 @@
 one:
   #id: 1
   title: First Todo 
-  description: This one should have two children, the second and third todos.
+  description: This one should have two children the second and third todos
   completed: false
+  user: one
 
 two:
   #id: 2
   title: Second Todo 
   description: This one should have one child, the third todos and one parent, the first todo.
-  completed: true
+  completed: false
+  user: one
   
 three:
   #id: 3
   title: Third Todo 
   description: This one should be a child of the first two todos.
   completed: false
+  user: one
 
 four:
   #id: 4
   title: Fourth Todo 
   description: This one doesn't have any children or parents.
   completed: false
+  user: one

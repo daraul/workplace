@@ -3,6 +3,7 @@ require 'test_helper'
 class TodosControllerTest < ActionController::TestCase
   setup do
     @todo = todos(:one)
+    session[:user_id] = users(:one).id
   end
 
   test "should get index" do
