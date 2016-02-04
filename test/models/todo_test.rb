@@ -36,6 +36,17 @@ class TodoTest < ActiveSupport::TestCase
         
         todos(:two).send(:complete_parents_if_siblings_completed)
         
-        assert todos(:one).completed == true, "Todo one completed is #{todos(:one).completed.to_s}"
+        assert_equal(todos(:two).send(:complete_parents_if_siblings_completed)[0].completed, true)
+    end 
+    
+    test "uncompleting child todo uncompletes parent" do 
+        todos(:two).completed = true 
+        todos(:one).completed = true 
+        
+        todos(:one).children << todos(:two)
+        
+        todos(:two).completed = false 
+        
+        assert_equal(todos(:two).send(:uncomplete_parents_if_uncompleted)[0].completed, false)
     end 
 end

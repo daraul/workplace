@@ -49,7 +49,7 @@ class Todo < ActiveRecord::Base
         end 
     end 
     
-    protected 
+    private 
         def uncomplete_parents_if_uncompleted
             if completed == false 
                 parents.each do |parent|
