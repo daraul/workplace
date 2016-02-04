@@ -49,4 +49,16 @@ class TodoTest < ActiveSupport::TestCase
         
         assert_equal(todos(:two).send(:uncomplete_parents_if_uncompleted)[0].completed, false)
     end 
+    
+    test "todo title and description allow apostrophes" do 
+        todo = Todo.new(:title => "That's not right", :description => "Apostrophe's apostrophy is useful", :user => users(:one), :completed => false)
+        
+        assert todo.save, "Todo saved with title \"#{todo.title}\""
+    end 
+    
+    test "todo description allows 0 characters" do 
+        todo = Todo.new(:title => "That's not right", :description => "", :user => users(:one), :completed => false)
+        
+        assert todo.save, "Todo did not save with empty description"
+    end 
 end

@@ -9,9 +9,9 @@ class Todo < ActiveRecord::Base
     
     validates :user, presence: true 
     
-    validates :title, presence: true, length: { in: 5..35, message: "must be 5 to 35 characters long!" }, format: { with: /\A[A-Z][\w\!\,\. ]+\z/, message: "must be alphanumeric, begin with a capital letter and can include white space or these characters: !,." } 
+    validates :title, presence: true, length: { in: 5..35, message: "must be 5 to 35 characters long!" }, format: { with: /\A[A-Z][\w\!\,\.\'\ ]+\z/, message: "must be alphanumeric, begin with a capital letter and can include white space or these characters: !,." } 
     
-    validates :description, length: { in: 10..255, message: "must be 10 to 255 characters long!" }, format: { with: /\A[\w\!\,\.\(\)\&\^\@\#\$\{\}\"\'\\\/\|\;\:\+\-\%\<\>\*\?\=\~\`\s]+\z/, message: "must be alphanumeric and can include white space or these characters: w!,.()&^@#${}\"'\/|;:+-%<>*?=s~`" }
+    validates :description, length: { in: 0..255, message: "must be 10 to 255 characters long!" }, format: { with: /\A[\w\!\,\.\(\)\&\^\@\#\$\{\}\"\'\\\/\|\;\:\+\-\%\<\>\*\?\=\~\`\s]+\z/, message: "must be alphanumeric and can include white space or these characters: w!,.()&^@#${}\"'\/|;:+-%<>*?=s~`" }, allow_blank: true
     
     validate :disallow_identical_parent_child_reference
     
