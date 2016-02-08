@@ -47,4 +47,11 @@ class TodosControllerTest < ActionController::TestCase
 
     assert_redirected_to todos_path
   end
+  
+  test "should not edit completed todo" do 
+      todo = todos(:five)
+      
+      patch :update, id: todo, todo: { completed: '1', description: todo.description, title: todo.title }
+      assert_redirected_to edit_todo_path(assigns(:todo))
+  end 
 end

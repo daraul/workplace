@@ -1,10 +1,6 @@
 require 'test_helper'
 
 class TodoTest < ActiveSupport::TestCase
-    test "there should be 4 todos" do 
-        assert Todo.count == 4, "There are #{Todo.count} todos"
-    end 
-    
     test "adding todo child adds relevant parent reference" do 
         todos(:one).children << todos(:three)
         todos(:one).children << todos(:two)

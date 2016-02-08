@@ -2,8 +2,9 @@ class TodosController < ApplicationController
   before_action :set_todo, only: [:show, :edit, :update, :destroy]
   before_action :set_new_todo, only: [:create]
   before_action :set_todos, only: [:index, :new, :edit, :create, :update]
-    before_action :assign_user, only: [:create]
-    before_action :verify_user, only: [:show, :edit, :update, :destroy]
+  before_action :assign_user, only: [:create]
+  before_action :verify_user, only: [:show, :edit, :update, :destroy]
+  before_action :verify_incompleted, only: [:update]
 
   # GET /todos
   # GET /todos.json
@@ -87,6 +88,13 @@ class TodosController < ApplicationController
             redirect_to todos_path
             flash.notice = "You're not allowed to do that!"
         end 
+    end 
+    
+    def verify_incompleted
+      if params[:todo][:completed] == "1" && @todo.completed == true 
+          redirect_to edit_todo_path(@todo)
+          flash.notice = "That todo is already completed and cannot be edited."
+      end 
     end 
 
     # Never trust parameters from the scary internet, only allow the white list through.
