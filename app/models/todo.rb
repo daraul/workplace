@@ -2,8 +2,8 @@ class Todo < ActiveRecord::Base
     after_save :complete_parents_if_siblings_completed
     after_save :uncomplete_parents_if_uncompleted
     
-    has_and_belongs_to_many :children, class_name: "Todo", join_table: "todos_todos", foreign_key: "parent_id", association_foreign_key: :child_id, before_add: [:disallow_self_referential_child]
-    has_and_belongs_to_many :parents, class_name: "Todo", join_table: "todos_todos", foreign_key: "child_id", association_foreign_key: :parent_id, before_add: [:disallow_self_referential_parent]
+    has_and_belongs_to_many :children, class_name: "Todo", join_table: "todos_todos", foreign_key: "parent_id", association_foreign_key: :child_id
+    has_and_belongs_to_many :parents, class_name: "Todo", join_table: "todos_todos", foreign_key: "child_id", association_foreign_key: :parent_id
     
     belongs_to :user
     
@@ -13,17 +13,15 @@ class Todo < ActiveRecord::Base
     
     validates :description, length: { in: 0..255, message: "must be 10 to 255 characters long!" }, format: { with: /\A[\w\!\,\.\(\)\&\^\@\#\$\{\}\"\'\\\/\|\;\:\+\-\%\<\>\*\?\=\~\`\s]+\z/, message: "must be alphanumeric and can include white space or these characters: w!,.()&^@#${}\"'\/|;:+-%<>*?=s~`" }, allow_blank: true
     
-    validate :disallow_identical_parent_child_reference
+    validate :disallow_identical_parent_child_reference, :disallow_completion_unless_all_children_completed, :parent_is_incompleted, :disallow_self_referential_child, :disallow_self_referential_parent
     
-    validate :disallow_completion_unless_all_children_completed
-    
-    def disallow_self_referential_child(children)
+    def disallow_self_referential_child
         if child_ids.include? id 
             errors.add(:children, 'cannot include self!')
         end 
     end 
     
-    def disallow_self_referential_parent(parents)
+    def disallow_self_referential_parent
         if parent_ids.include? id 
             errors.add(:parents, "cannot include self!")
         end 
@@ -34,6 +32,14 @@ class Todo < ActiveRecord::Base
             if child_ids.include? parent_id 
                 errors.add(:parents, 'cannot include a child!')
                 return 
+            end 
+        end 
+    end 
+    
+    def parent_is_incompleted
+        parents.each do |parent|
+            if parent.completed == true 
+                errors.add(:parents, "cannot be completed when adding them.")
             end 
         end 
     end 
