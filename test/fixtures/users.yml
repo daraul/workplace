@@ -4,10 +4,12 @@ one:
   first_name: John
   last_name: Doe
   email: johndoe@fake.com
-  password_digest: 12345678
+  password_digest: $2a$04$iSJ4zOy.C9z/WSw.njq/1ODQ4tNXgV4Qmd9/MlM1wQ/5cooVmDuXO
+  #password: 12345678
 
 two:
   first_name: Jane
   last_name: Doe
   email: janedoe@fake.com
-  password_digest: 12345678
+  password_digest: $2a$04$iSJ4zOy.C9z/WSw.njq/1ODQ4tNXgV4Qmd9/MlM1wQ/5cooVmDuXO
+  #password: 12345678

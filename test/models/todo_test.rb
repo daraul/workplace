@@ -47,19 +47,19 @@ class TodoTest < ActiveSupport::TestCase
     end 
     
     test "todo title and description allow apostrophes" do 
-        todo = Todo.new(:title => "That's not right", :description => "Apostrophe's apostrophy is useful", :user => users(:one), :completed => false)
+        todo = Todo.new(:title => "That's not right", :description => "Apostrophe's apostrophy is useful", :user => users(:one), :completed => false, :due => "2016-03-12 10:10")
         
         assert todo.save, "Todo saved with title \"#{todo.title}\""
     end 
     
     test "todo description allows 0 characters" do 
-        todo = Todo.new(:title => "That's not right", :description => "", :user => users(:one), :completed => false)
+        todo = Todo.new(:title => "That's not right", :description => "", :user => users(:one), :completed => false, :due => "2016-03-12 10:10")
         
         assert todo.save, "Todo did not save with empty description"
     end 
     
     test "todo title length" do 
-        todo = Todo.new(:title => "A0123456789012345678901234567890123456789012345678", :description => "", :user => users(:one), :completed => false)
+        todo = Todo.new(:title => "A0123456789012345678901234567890123456789012345678", :description => "", :user => users(:one), :completed => false, :due => "2016-03-12 10:10")
         
         assert todo.save, "Todo title is #{todo.title.length} characters long."
     end 

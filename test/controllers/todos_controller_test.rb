@@ -19,7 +19,7 @@ class TodosControllerTest < ActionController::TestCase
 
   test "should create todo" do
     assert_difference('Todo.count') do
-      post :create, todo: { completed: @todo.completed, description: @todo.description, title: @todo.title }
+      post :create, todo: { completed: @todo.completed, description: @todo.description, title: @todo.title, due: @todo.due }
     end
 
     assert_redirected_to todo_path(assigns(:todo))
@@ -36,7 +36,7 @@ class TodosControllerTest < ActionController::TestCase
   end
 
   test "should update todo" do
-    patch :update, id: @todo, todo: { completed: @todo.completed, description: @todo.description, title: @todo.title }
+    patch :update, id: @todo, todo: { completed: true, description: "New description is long", title: "New Title", due: "2015-02-11 11:02:57" }
     assert_redirected_to todo_path(assigns(:todo))
   end
 
@@ -51,7 +51,7 @@ class TodosControllerTest < ActionController::TestCase
   test "should not edit completed todo" do 
       todo = todos(:five)
       
-      patch :update, id: todo, todo: { completed: '1', description: todo.description, title: todo.title }
+      patch :update, id: todo, todo: { completed: '1', description: todo.description, title: todo.title, due: todo.due }
       assert_redirected_to edit_todo_path(assigns(:todo))
   end 
 end

@@ -13,6 +13,8 @@ class Todo < ActiveRecord::Base
     
     validates :description, length: { in: 0..255, message: "must be 10 to 255 characters long!" }, format: { with: /\A[\w\!\,\.\(\)\&\^\@\#\$\{\}\"\'\\\/\|\;\:\+\-\%\<\>\*\?\=\~\`\s]+\z/, message: "must be alphanumeric and can include white space or these characters: w!,.()&^@#${}\"'\/|;:+-%<>*?=s~`" }, allow_blank: true
     
+    validates :due, presence: true#, format: { with: /\A(19[0-9]{2}|2[0-9]{3})-(0[1-9]|1[012])-([123]0|[012][1-9]|31) ([01][0-9]|2[0-3]):([0-5][0-9])\z/, message: "must follow this format: YYYY-MM-DD HH:MM" } 
+    
     validate :disallow_identical_parent_child_reference, :disallow_completion_unless_all_children_completed, :parent_is_incompleted, :disallow_self_referential_child, :disallow_self_referential_parent
     
     def disallow_self_referential_child

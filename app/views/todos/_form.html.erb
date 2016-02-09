@@ -28,6 +28,10 @@
       <%= f.collection_select( :parent_ids, @todos, :id, :title, {}, html_options = { :multiple => true } ) %>
   </div>
   <div class="field">
+    <%= f.label :due %><br>
+    <%= f.datetime_select :due %>
+  </div>
+  <div class="field">
     <%= f.label :completed %><br>
     <%= f.check_box :completed %>
   </div>

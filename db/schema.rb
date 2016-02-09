@@ -16,10 +16,11 @@ ActiveRecord::Schema.define(version: 20160203011537) do
   create_table "todos", force: :cascade do |t|
     t.string   "title"
     t.text     "description", default: ""
+    t.datetime "due",         default: '2016-02-08 18:57:49', null: false
     t.boolean  "completed",   default: false
     t.integer  "user_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
   add_index "todos", ["user_id"], name: "index_todos_on_user_id"
