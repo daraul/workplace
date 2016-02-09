@@ -3,6 +3,7 @@
 <% if defined?(title) && title == true %>
 <% else %>
   <p class="description"><%= todo.description %></p>
+  <p>Due: <%= todo.due %></p>
   <p>Completed: <%= todo.completed.to_s %></p>
 <% end %>
 <%= link_to 'Edit', edit_todo_path(todo) %>

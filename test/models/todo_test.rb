@@ -47,20 +47,50 @@ class TodoTest < ActiveSupport::TestCase
     end 
     
     test "todo title and description allow apostrophes" do 
-        todo = Todo.new(:title => "That's not right", :description => "Apostrophe's apostrophy is useful", :user => users(:one), :completed => false, :due => "2016-03-12 10:10")
+        todo = Todo.new(:title => "That's not right", :description => "Apostrophe's apostrophy is useful", :user => users(:one), :completed => false, :due => Time.now + 1.day)
         
         assert todo.save, "Todo saved with title \"#{todo.title}\""
     end 
     
     test "todo description allows 0 characters" do 
-        todo = Todo.new(:title => "That's not right", :description => "", :user => users(:one), :completed => false, :due => "2016-03-12 10:10")
+        todo = Todo.new(:title => "That's not right", :description => "", :user => users(:one), :completed => false, :due => Time.now + 1.day)
         
         assert todo.save, "Todo did not save with empty description"
     end 
     
     test "todo title length" do 
-        todo = Todo.new(:title => "A0123456789012345678901234567890123456789012345678", :description => "", :user => users(:one), :completed => false, :due => "2016-03-12 10:10")
+        todo = Todo.new(:title => "A0123456789012345678901234567890123456789012345678", :description => "", :user => users(:one), :completed => false, :due => Time.now + 1.day)
         
         assert todo.save, "Todo title is #{todo.title.length} characters long."
+    end 
+    
+    test "child due date is before parent" do
+        todo = Todo.new(:title => "Test Title", :description => "", :user => users(:one), :completed => false, :due => Time.now + 1.day)
+        child = Todo.new(:title => "Child Title", :description => "", :user => users(:one), :completed => false, :due => Time.now + 2.days)
+        
+        todo.children << child
+        
+        assert_not todo.save, "Todo saved despite child being due after parent"
+    end
+    
+    test "parent due date is after parent" do 
+        todo = Todo.new(:title => "Early Title", :description => "", :user => users(:one), :completed => false, :due => Time.now + 2.days)
+        parent = Todo.new(:title => "Test Title", :description => "", :user => users(:one), :completed => false, :due => Time.now + 1.day)
+        
+        todo.parents << parent 
+        
+        assert_not todo.save, "Todo saved despite parent being due before child"
+    end 
+    
+    test "parents and children can have same due date" do 
+        parent = Todo.new(:title => "Parent todo", :description => "", :user => users(:one), :completed => false, :due => Time.now + 1.day)
+        child = Todo.new(:title => "Child todo", :description => "", :user => users(:one), :completed => false, :due => parent.due)
+        
+        parent.save 
+        child.save 
+        
+        child.parents << parent  
+        
+        assert child.save, "Todo not saved"
     end 
 end

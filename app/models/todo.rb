@@ -15,11 +15,35 @@ class Todo < ActiveRecord::Base
     
     validates :due, presence: true#, format: { with: /\A(19[0-9]{2}|2[0-9]{3})-(0[1-9]|1[012])-([123]0|[012][1-9]|31) ([01][0-9]|2[0-3]):([0-5][0-9])\z/, message: "must follow this format: YYYY-MM-DD HH:MM" } 
     
-    validate :disallow_identical_parent_child_reference, :disallow_completion_unless_all_children_completed, :parent_is_incompleted, :disallow_self_referential_child, :disallow_self_referential_parent
+    validate :disallow_identical_parent_child_reference, :disallow_completion_unless_all_children_completed, :parent_is_incompleted, :disallow_self_referential_child, :disallow_self_referential_parent, :due_is_now_or_later, :parents_due_after_or_on_self, :child_due_before_or_on_self
+    
+    def parents_due_after_or_on_self
+        parents.each do |parent|
+            if parent.due < self.due 
+                errors.add(:parents, "should be due on or after children.")
+                return 
+            end 
+        end 
+    end 
+    
+    def child_due_before_or_on_self
+        children.each do |child|
+            if child.due > self.due 
+                errors.add(:children, "should be due on or before parents.")
+                return 
+            end 
+        end 
+    end 
     
     def disallow_self_referential_child
         if child_ids.include? id 
             errors.add(:children, 'cannot include self!')
+        end 
+    end 
+    
+    def due_is_now_or_later
+        if self.due < Time.now 
+            errors.add(:due, "date should either be now or later.")
         end 
     end 
     
