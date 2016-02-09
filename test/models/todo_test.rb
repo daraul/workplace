@@ -93,4 +93,16 @@ class TodoTest < ActiveSupport::TestCase
         
         assert child.save, "Todo not saved"
     end 
+    
+    test "new todos should be due now or in the future" do 
+        Timecop.freeze(DateTime.now)
+        
+        todo = Todo.new(:title => "Test todo", :description => "", :user => users(:one), :completed => false, :due => DateTime.now)
+        todo2 = Todo.new(:title => "Test todo 2", :description => "", :user => users(:one), :completed => false, :due => DateTime.now + 1.day)
+        todo3 = Todo.new(:title => "Test todo 3", :description => "", :user => users(:one), :completed => false, :due => DateTime.now - 1.day)
+        
+        assert todo.save, "Todo due now did not save"
+        assert todo2.save, "Todo due tomorrow did not save"
+        assert_not todo3.save, "Todo 3 created despite being in the past"
+    end 
 end
