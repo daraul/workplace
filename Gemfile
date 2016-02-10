@@ -31,6 +31,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Add coveralls to audit my test suite
+gem 'coveralls', require: false
+
 group :production do 
     gem 'rails_12factor'
     gem 'pg'
