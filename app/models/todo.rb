@@ -15,9 +15,9 @@ class Todo < ActiveRecord::Base
     
     validates :due, presence: true#, format: { with: /\A(19[0-9]{2}|2[0-9]{3})-(0[1-9]|1[012])-([123]0|[012][1-9]|31) ([01][0-9]|2[0-3]):([0-5][0-9])\z/, message: "must follow this format: YYYY-MM-DD HH:MM" } 
     
-    validate :disallow_identical_parent_child_reference, :disallow_completion_unless_all_children_completed, :parent_is_incompleted, :disallow_self_referential_child, :disallow_self_referential_parent, :parents_due_after_or_on_self, :child_due_before_or_on_self
+    validate :disallow_identical_parent_child_reference, :disallow_completion_unless_all_children_completed, :disallow_self_referential_child, :disallow_self_referential_parent, :parents_due_after_or_on_self, :child_due_before_or_on_self
     
-    validate :due_is_now_or_later, on: :create
+    validate :due_is_now_or_later, :parent_is_incompleted, on: :create
     
     def parents_due_after_or_on_self
         parents.each do |parent|
@@ -67,7 +67,7 @@ class Todo < ActiveRecord::Base
     def parent_is_incompleted
         parents.each do |parent|
             if parent.completed == true 
-                errors.add(:parents, "cannot be completed when adding them.")
+                errors.add(:parents, "cannot be completed when adding a new todo.")
             end 
         end 
     end 
