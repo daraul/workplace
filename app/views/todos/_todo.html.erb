@@ -1,5 +1,10 @@
 <h1 class="title"><%= link_to(todo.title, todo) %></h1>
 
+<%= form_for(todo) do |f| %>
+  <%= f.check_box :completed %>
+  <%= f.submit %>
+<% end %>
+
 <% if defined?(title) && title == true %>
 <% else %>
   <p class="description"><%= todo.description %></p>
