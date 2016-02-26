@@ -51,7 +51,7 @@ class TodosController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
-        format.js { render js: "document.getElementById('alert').innerHTML = 'That action caused an error. Edit that todo with the form to see what the problem is.';" }
+        format.js { render :action => "todo_update_error" }
       end
     end
     

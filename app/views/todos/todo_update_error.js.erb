@@ -1,0 +1,13 @@
+$("#error_explanation").remove();
+
+var error_content = '<div id="error_explanation">' +
+    '<h2><%= pluralize(@todo.errors.count, "error") %> prohibited the todo from being saved:</h2>' + 
+    '<ul>' + 
+        '<% @todo.errors.full_messages.each do |message| %>' + 
+            '<li><%= message %></li>' + 
+        '<% end %>' + 
+    '</ul>' + 
+'</div>'
+
+$("#todos").prepend(error_content);
+$("#todo").prepend(error_content);
