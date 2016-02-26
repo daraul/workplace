@@ -3,6 +3,12 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'page:change', () ->
+    $(document).ajaxSend () ->
+        NProgress.start()
+    
+    $(document).ajaxComplete () ->
+        NProgress.done()
+    
     $("#todos .edit_todo input[type=submit]").hide(); 
     
     $("#todo .edit_todo input[type=submit]").hide(); 
