@@ -1,5 +1,15 @@
 $("#todos").html("<%= escape_javascript(render @todos, title: true) %>");
 
-$("#todo").html("<%= escape_javascript(render @current_todo) %>");
-$("#parents").html("<%= escape_javascript(render @current_parents) %>");
-$("#children").html("<%= escape_javascript(render @current_children) %>");
+<% if @current_todo != nil %>
+    $("#todo").html("<%= escape_javascript(render @current_todo) %>");
+    $("#parents").html("<%= escape_javascript(render @current_parents) %>");
+    $("#children").html("<%= escape_javascript(render @current_children) %>");
+<% end %>
+
+
+/* Hide the submit buttons */
+$("#todos .edit_todo input[type=submit]").hide(); 
+    
+$("#todo .edit_todo input[type=submit]").hide(); 
+$("#parents .edit_todo input[type=submit]").hide(); 
+$("#children .edit_todo input[type=submit]").hide(); 

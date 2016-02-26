@@ -56,9 +56,13 @@ class TodosController < ApplicationController
       end
     end
     
-    @current_todo = flash[:current_todo] != nil ? Todo.find(flash[:current_todo]) : @todo
-    @current_parents = @current_todo.parents 
-    @current_children = @current_todo.children
+    if flash[:current_todo] != nil 
+        @current_todo = Todo.find(flash[:current_todo])
+        @current_parents = @current_todo.parents 
+        @current_children = @current_todo.children
+        
+        flash[:current_todo] = @current_todo.id
+    end 
   end
 
   # DELETE /todos/1
