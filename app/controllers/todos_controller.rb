@@ -14,6 +14,7 @@ class TodosController < ApplicationController
   # GET /todos/1
   # GET /todos/1.json
   def show
+      flash[:current_todo] = @todo.id
   end
 
   # GET /todos/new
@@ -46,11 +47,16 @@ class TodosController < ApplicationController
       if @todo.update(todo_params)
         format.html { redirect_to @todo, notice: 'Todo was successfully updated.' }
         format.json { render :show, status: :ok, location: @todo }
+        format.js {}
       else
         format.html { render :edit }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
       end
     end
+    
+    @current_todo = flash[:current_todo] != nil ? Todo.find(flash[:current_todo]) : @todo
+    @current_parents = @current_todo.parents 
+    @current_children = @current_todo.children
   end
 
   # DELETE /todos/1

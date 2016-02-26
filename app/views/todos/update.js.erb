@@ -1,0 +1,5 @@
+$("#todos").html("<%= escape_javascript(render @todos, title: true) %>");
+
+$("#todo").html("<%= escape_javascript(render @current_todo) %>");
+$("#parents").html("<%= escape_javascript(render @current_parents) %>");
+$("#children").html("<%= escape_javascript(render @current_children) %>");

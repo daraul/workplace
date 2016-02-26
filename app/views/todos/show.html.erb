@@ -1,11 +1,17 @@
 <% content_for :title, @todo.title %>
 
-<%= render @todo %>
+<div id="todo">
+    <%= render @todo %>
+</div>
 
 <h2>Parents</h2>
-<%= render @parents %>
+<div id="parents">
+    <%= render @parents %>
+</div>
 
 <h2>Children</h2>
-<%= render @children %>
+<div id="children">
+    <%= render @children %>
+</div>
 
 <%= link_to 'Back', todos_path %>
