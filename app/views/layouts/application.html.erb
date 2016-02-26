@@ -7,8 +7,8 @@
         <%= csrf_meta_tags %>
     </head>
     <body>
-        <p class="flash"><%= flash.notice %></p>
-        <p class="alert"><%= flash.alert %></p>
+        <p id="flash"><%= flash.notice %></p>
+        <p id="alert"><%= flash.alert %></p>
         
         <% if current_user %> 
             <ul> 
