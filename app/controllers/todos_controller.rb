@@ -1,5 +1,6 @@
 class TodosController < ApplicationController
   before_action :set_todo, only: [:show, :edit, :update, :destroy]
+  before_action :set_back, only: [:index, :show]
   before_action :set_new_todo, only: [:create]
   before_action :set_todos, only: [:index, :new, :edit, :create, :update]
   before_action :assign_user, only: [:create]
@@ -45,9 +46,9 @@ class TodosController < ApplicationController
   def update
     respond_to do |format|
       if @todo.update(todo_params)
-        format.html { redirect_to @todo, notice: 'Todo was successfully updated.' }
+        format.html { redirect_to flash[:go_back] ? :back : @todo, notice: 'Todo was successfully updated.' }
         format.json { render :show, status: :ok, location: @todo }
-        format.js {}
+        format.js { }
       else
         format.html { render :edit }
         format.json { render json: @todo.errors, status: :unprocessable_entity }
@@ -95,6 +96,10 @@ class TodosController < ApplicationController
             redirect_to todos_path
             flash.notice = "You're not allowed to do that!"
         end 
+    end 
+    
+    def set_back
+        flash[:go_back] = true 
     end 
     
     def verify_incompleted
