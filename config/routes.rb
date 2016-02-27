@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root 'todos#index'
   
   get 'signup'  => 'users#new' 
-  resources :users
+  get 'profile' => 'users#show'
+  
+  resources :users, only: [:create, :update]
   
   get '/login' => 'sessions#new'
   post 'login' => 'sessions#create'
