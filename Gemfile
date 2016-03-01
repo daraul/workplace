@@ -34,6 +34,9 @@ gem 'bcrypt', '~> 3.1.7'
 # Add coveralls to audit my test suite
 gem 'coveralls', require: false
 
+# Good old paperclip for file uploads
+gem "paperclip", "~> 4.3"
+
 group :production do 
     gem 'rails_12factor'
     gem 'pg'

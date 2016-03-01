@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203011537) do
+ActiveRecord::Schema.define(version: 20160301121616) do
+
+  create_table "datafiles", force: :cascade do |t|
+    t.integer  "todo_id"
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "datafiles", ["todo_id"], name: "index_datafiles_on_todo_id"
 
   create_table "todos", force: :cascade do |t|
     t.string   "title"

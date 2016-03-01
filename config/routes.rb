@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :todos
+  resources :todos do 
+      resources :datafiles, only: [:destroy] 
+  end 
+  
   root 'todos#index'
   
   get 'signup'  => 'users#new' 

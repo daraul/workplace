@@ -21,6 +21,8 @@ class TodosController < ApplicationController
   # GET /todos/new
   def new
     @todo = Todo.new
+    
+    @datafiles = @todo.datafiles 
   end
 
   # GET /todos/1/edit
@@ -81,6 +83,7 @@ class TodosController < ApplicationController
       @todo = Todo.find(params[:id])
       @parents = @todo.parents 
       @children = @todo.children 
+      @datafiles = @todo.datafiles
     end
     
     def set_todos 
@@ -115,6 +118,6 @@ class TodosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_params
-      params.require(:todo).permit(:title, :description, :completed, :due, child_ids: [], parent_ids: [] )
+      params.require(:todo).permit(:title, :description, :completed, :due, datafiles_attributes: [:attachment], child_ids: [], parent_ids: [] )
     end
 end

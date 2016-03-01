@@ -7,6 +7,9 @@ class Todo < ActiveRecord::Base
     
     belongs_to :user
     
+    has_many :datafiles, :dependent => :destroy 
+    accepts_nested_attributes_for :datafiles, :allow_destroy => true
+    
     validates :user, presence: true 
     
     validates :title, presence: true, length: { in: 5..50, message: "must be 5 to 35 characters long!" }, format: { with: /\A[A-Z][\w\!\,\.\'\ ]+\z/, message: "must be alphanumeric, begin with a capital letter and can include white space or these characters: !,." } 

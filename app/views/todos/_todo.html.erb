@@ -11,6 +11,12 @@
   <p class="description"><%= todo.description %></p>
   <p>Due: <%= todo.due %></p>
   <p>Completed: <%= todo.completed.to_s %></p>
+  <h3 id="todo_attachments">Attachments</h3>
+  <ul>
+      <% todo.datafiles.each do |file| %>
+        <li><%= link_to(file.attachment_file_name, file.attachment.url, target: "_blank") %></li>
+      <% end %>
+  </ul>
 <% end %>
 <%= link_to 'Edit', edit_todo_path(todo) %>
 <%= link_to 'Destroy', todo, method: :delete, data: { confirm: 'Are you sure?' } %>
