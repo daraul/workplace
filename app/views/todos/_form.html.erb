@@ -19,20 +19,6 @@
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
-  <% if @datafiles.count > 1 %>
-      <h3 id="todo_attachments">Delete attachments</h3>
-      <ul>
-          <% @datafiles.each do |file| %>
-              <li><%= link_to file.attachment_file_name, todo_datafile_path(@todo, file), method: :delete, data: {confirm: "Are you sure? This will delete this file."}, :title => "Delete this file."  %></li>
-          <% end %>
-      </ul>
-  <% end %>
-  <%= f.fields_for(:datafiles, Datafile.new) do |ff| %>
-      <div class="field">
-          <%= ff.label :attachment, "Add attachments" %>
-          <%= ff.file_field :attachment, :multiple => true, :name => "todo[datafiles_attributes][][attachment]" %>
-      </div>
-  <% end %>
   <div class="field">
       <%= f.label :children %><br>
       <%= f.collection_select( :child_ids, @todos, :id, :title, {}, html_options = { :multiple => true } ) %>
@@ -41,6 +27,23 @@
       <%= f.label :parents %><br>
       <%= f.collection_select( :parent_ids, @todos, :id, :title, {}, html_options = { :multiple => true } ) %>
   </div>
+  <div id="add_attachments" class="fields">
+      <%= f.fields_for(:datafiles, Datafile.new) do |ff| %>
+          <a href="#" id="add_attachment">Add attachments</a>
+          <div class="field">
+              <%= ff.hidden_field :filename %>
+          </div>
+          <div class="field">
+              <%= ff.hidden_field :url %>
+          </div>
+      <% end %>
+  </div>
+  <% if @datafiles.count > 0 %>
+      <h3>Remove attachments</h3>
+      <ul id="remove_attachments">
+          <%= render @datafiles %>
+      </ul>
+  <% end %>
   <div class="field">
     <%= f.label :due %><br>
     <%= f.datetime_select :due, default: Time.now + 1.hour %>

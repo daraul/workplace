@@ -1,0 +1,4 @@
+<li>
+    <%= link_to datafile.filename, datafile.url, target: "_blank" %>
+    <%= link_to "Remove", todo_datafile_path(@todo, datafile), method: :delete, data: {confirm: "Are you sure? This will delete this file."}, :title => "Delete this file."  %>
+</li>

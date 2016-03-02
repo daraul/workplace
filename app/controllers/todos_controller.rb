@@ -118,6 +118,6 @@ class TodosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def todo_params
-      params.require(:todo).permit(:title, :description, :completed, :due, datafiles_attributes: [:attachment], child_ids: [], parent_ids: [] )
+      params.require(:todo).permit(:title, :description, :completed, :due, datafiles_attributes: [:filename, :url], child_ids: [], parent_ids: [] )
     end
 end

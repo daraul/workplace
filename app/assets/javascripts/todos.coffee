@@ -22,9 +22,7 @@ $(document).on 'page:change', () ->
         $("#error_explanation").delay(5000).fadeOut( 300 );
     )
     
-    if document.getElementById('todos') != null 
-        subject = document.getElementById('todos') 
-    else 
-        subject = document.getElementById('todo')
+    subject = if document.getElementById('todos') != null then document.getElementById('todos') else document.getElementById('todo')
     
-    observer.observe(subject, {childList: true})
+    if subject 
+        observer.observe(subject, {childList: true})
