@@ -92,6 +92,7 @@ class TodosController < ApplicationController
     
     def set_new_todo
         @todo = Todo.new(todo_params)
+        @datafiles = @todo.datafiles 
     end 
     
     def assign_user
