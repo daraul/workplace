@@ -1,4 +1,4 @@
-<%= form_for(@todo) do |f| %>
+<%= form_for(@todo, :remote => defined?(remote) ? remote : false) do |f| %>
   <% if @todo.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@todo.errors.count, "error") %> prohibited this todo from being saved:</h2>
@@ -15,28 +15,30 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-      <%= f.label :children %><br>
-      <%= f.collection_select( :child_ids, @todos, :id, :title, {}, html_options = { :multiple => true } ) %>
-  </div>
-  <div class="field">
-      <%= f.label :parents %><br>
-      <%= f.collection_select( :parent_ids, @todos, :id, :title, {}, html_options = { :multiple => true } ) %>
-  </div>
-  <div id="add_attachments" class="fields">
-      <%= f.fields_for(:datafiles, Datafile.new) do |ff| %>
-          <a href="#" id="add_attachment">Add attachments</a>
+  <% if !defined?(quick) || quick == false %>
+      <div class="field">
+        <%= f.label :description %><br>
+        <%= f.text_area :description %>
+      </div>
+      <div class="field">
+          <%= f.label :children %><br>
+          <%= f.collection_select( :child_ids, @todos, :id, :title, {}, html_options = { :multiple => true } ) %>
+      </div>
+      <div class="field">
+          <%= f.label :parents %><br>
+          <%= f.collection_select( :parent_ids, @todos, :id, :title, {}, html_options = { :multiple => true } ) %>
+      </div>
+      <div id="add_attachments" class="fields">
+          <%= f.fields_for(:datafiles, Datafile.new) do |ff| %>
+              <a href="#" id="add_attachment">Add attachments</a>
+          <% end %>
+      </div>
+      <% if @datafiles.count > 0 %>
+          <h3>Remove attachments</h3>
+          <ul id="remove_attachments">
+              <%= render @datafiles %>
+          </ul>
       <% end %>
-  </div>
-  <% if @datafiles.count > 0 %>
-      <h3>Remove attachments</h3>
-      <ul id="remove_attachments">
-          <%= render @datafiles %>
-      </ul>
   <% end %>
   <div class="field">
     <%= f.label :due %><br>

@@ -1,5 +1,8 @@
 <% content_for :title, "All todos" %>
 
+<h1>Create todo</h1>
+<%= render 'form', quick: true, remote: true %>
+
 <div id="todos">
     <%= render @todos, title: true %>
 </div>

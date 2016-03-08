@@ -1,47 +1,54 @@
 class TodosController < ApplicationController
-  before_action :set_todo, only: [:show, :edit, :update, :destroy]
-  before_action :set_back, only: [:index, :show]
-  before_action :set_new_todo, only: [:create]
-  before_action :set_todos, only: [:index, :new, :edit, :create, :update]
-  before_action :assign_user, only: [:create]
-  before_action :verify_user, only: [:show, :edit, :update, :destroy]
-  before_action :verify_incompleted, only: [:update]
-
-  # GET /todos
-  # GET /todos.json
-  def index
-  end
-
-  # GET /todos/1
-  # GET /todos/1.json
-  def show
-      flash[:current_todo] = @todo.id
-  end
-
-  # GET /todos/new
-  def new
-    @todo = Todo.new
+    before_action :set_todo, only: [:show, :edit, :update, :destroy]
+    before_action :set_back, only: [:index, :show]
+    before_action :set_new_todo, only: [:create]
+    before_action :set_todos, only: [:index, :new, :edit, :create, :update]
+    before_action :assign_user, only: [:create]
+    before_action :verify_user, only: [:show, :edit, :update, :destroy]
+    before_action :verify_incompleted, only: [:update]
     
-    @datafiles = @todo.datafiles 
-  end
-
-  # GET /todos/1/edit
-  def edit
-  end
-
-  # POST /todos
-  # POST /todos.json
-  def create
-    respond_to do |format|
-      if @todo.save
-        format.html { redirect_to @todo, notice: 'Todo was successfully created.' }
-        format.json { render :show, status: :created, location: @todo }
-      else
-        format.html { render :new }
-        format.json { render json: @todo.errors, status: :unprocessable_entity }
-      end
+    # GET /todos
+    # GET /todos.json
+    def index
+        @todo = Todo.new
+        
+        respond_to do |format|
+            format.html {}
+            format.js {}
+        end
     end
-  end
+
+    # GET /todos/1
+    # GET /todos/1.json
+    def show
+        flash[:current_todo] = @todo.id
+    end
+    
+    # GET /todos/new
+    def new
+        @todo = Todo.new
+        
+        @datafiles = @todo.datafiles 
+    end
+    
+    # GET /todos/1/edit
+    def edit
+    end
+    
+    # POST /todos
+    # POST /todos.json
+    def create
+        respond_to do |format|
+            if @todo.save
+                format.html { redirect_to flash[:go_back] ? :back : @todo, notice: 'Todo was successfully created.' }
+                format.json { render :show, status: :created, location: @todo }
+            else
+                format.html { render :new }
+                format.json { render json: @todo.errors, status: :unprocessable_entity }
+                format.js { render :action => "todo_update_error" }
+            end
+        end
+    end
 
   # PATCH/PUT /todos/1
   # PATCH/PUT /todos/1.json
