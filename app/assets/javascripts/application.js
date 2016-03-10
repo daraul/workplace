@@ -14,9 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require nprogress
+//= require material.min
 //= require api
 //= require_tree .
 
 $(document).on('page:fetch',   function() { NProgress.start(); });
-$(document).on('page:change',  function() { NProgress.done(); });
+$(document).on('page:change',  function() { NProgress.done(); componentHandler.upgradeDom(); }); // Need upgradeDom here so turbolinks doesn't break MDL 
 $(document).on('page:restore', function() { NProgress.remove(); });

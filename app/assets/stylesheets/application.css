@@ -13,4 +13,6 @@
  *= require_tree .
  *= require_self
  *= require nprogress
+ *= require material.blue_grey-red.min
  */
+ 

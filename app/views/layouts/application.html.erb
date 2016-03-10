@@ -10,19 +10,50 @@
         <p id="flash"><%= flash.notice %></p>
         <p id="alert"><%= flash.alert %></p>
         
-        <% if current_user %> 
-            <ul> 
-                <li><%= link_to current_user.email, profile_path %></li> 
-                <li><%= link_to "Log out", logout_path, method: "delete" %></li> 
-            </ul> 
-        <% else %> 
-            <ul> 
-                <li><%= link_to "Login", 'login' %></a></li> 
-                <li><%= link_to "Signup", 'signup' %></a></li> 
-            </ul> 
-        <% end %>
-        
-        <%= yield %>
-    
+        <div class="mdl-layout mdl-js-layout mdl-layout__header--scroll">
+            <header class="mdl-layout__header"> 
+                <div class="mdl-layout__header-row">
+                    <span id="title" class="mdl-layout-title">Workplace<%= yield(:title) != "" ? " - " + yield(:title) : "" %></span>
+                    
+                    <div class="mdl-layout-spacer"></div>
+                    
+                    <nav class="mdl-navigation mdl-layout--large-screen-only">
+                        <% if current_user %>
+                            <%= link_to "All Todos", todos_path, :class => "mdl-navigation__link" %>
+                            <%= link_to current_user.email, profile_path, :class => "mdl-navigation__link"  %>
+                            <%= link_to "Log out", logout_path, method: "delete", :class => "mdl-navigation__link"  %>
+                        <% else %> 
+                            <%= link_to "Login", 'login', :class => "mdl-navigation__link"  %>
+                            <%= link_to "Signup", 'signup', :class => "mdl-navigation__link"  %>
+                        <% end %>
+                    </nav>
+                </div>
+            </header>
+            
+            <div class="mdl-layout__drawer">
+                <nav class="mdl-navigation">
+                    <% if current_user %>
+                        <%= link_to "All Todos", todos_path, :class => "mdl-navigation__link" %>
+                        <%= link_to current_user.email, profile_path, :class => "mdl-navigation__link"  %>
+                        <%= link_to "Log out", logout_path, method: "delete", :class => "mdl-navigation__link"  %>
+                    <% else %> 
+                        <%= link_to "Login", 'login', :class => "mdl-navigation__link"  %>
+                        <%= link_to "Signup", 'signup', :class => "mdl-navigation__link"  %>
+                    <% end %>
+                </nav>
+            </div>
+            
+            <main class="mdl-layout__content">
+                <div class="page-content">
+                    <%= yield %>
+                </div>
+                
+                <% if current_user %>
+                    <%= link_to new_todo_path, :class => "mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored ", :id => "add-todo" do %>
+                        <span class="material-icons">add</span>
+                    <% end %>
+                <% end %>
+            </main>
+        </div>
     </body>
 </html>
