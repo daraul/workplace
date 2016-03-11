@@ -1,3 +1,4 @@
 == README
 
-This application uses nprogress bars from @rstacruz ( https://github.com/rstacruz/nprogress/ )
+This application uses nprogress bars from @rstacruz ( https://github.com/rstacruz/nprogress/ ),
+and material design (http://getmdl.io/).
