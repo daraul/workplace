@@ -10,7 +10,7 @@
         <p id="flash"><%= flash.notice %></p>
         <p id="alert"><%= flash.alert %></p>
         
-        <div class="mdl-layout mdl-js-layout mdl-layout__header--scroll">
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header"> 
                 <div class="mdl-layout__header-row">
                     <span id="title" class="mdl-layout-title">Workplace<%= yield(:title) != "" ? " - " + yield(:title) : "" %></span>
@@ -31,6 +31,8 @@
             </header>
             
             <div class="mdl-layout__drawer">
+                <span id="title" class="mdl-layout-title">Workplace<%= yield(:title) != "" ? " - " + yield(:title) : "" %></span>
+                
                 <nav class="mdl-navigation">
                     <% if current_user %>
                         <%= link_to "All Todos", todos_path, :class => "mdl-navigation__link" %>
