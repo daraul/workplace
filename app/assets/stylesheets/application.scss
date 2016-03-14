@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  *= require nprogress
- *= require material.blue_grey-red.min
  */
  
+ @import "materialize";
+ @import url(http://fonts.googleapis.com/icon?family=Material+Icons);

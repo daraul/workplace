@@ -14,10 +14,20 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require nprogress
-//= require material.min
+//= require materialize-sprockets
 //= require api
 //= require_tree .
 
 $(document).on('page:fetch',   function() { NProgress.start(); });
-$(document).on('page:change',  function() { NProgress.done(); componentHandler.upgradeDom(); }); // Need upgradeDom here so turbolinks doesn't break MDL 
+$(document).on('page:change',  function() { 
+    NProgress.done(); 
+    $(".button-collapse").sideNav(); 
+    
+    $('select').material_select();
+    
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
+});
 $(document).on('page:restore', function() { NProgress.remove(); });

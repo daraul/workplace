@@ -4,9 +4,17 @@
             <h1>Log in</h1>
 			
 			<%= form_for(:session, url: login_path) do |f| %> 
-			    <%= f.email_field :email, :placeholder => "Email" %> 
-                <%= f.password_field :password, :placeholder => "Password" %> 
-                <%= f.submit "Log in", class: "btn-submit" %>
+			    <div class="input-field col s6">
+			        <%= f.email_field :email, :placeholder => "Email" %> 
+			    </div>
+			    <div class="input-field col s6">
+			        <%= f.password_field :password, :placeholder => "Password" %> 
+			    </div>
+			    <div class="actions">
+                    <button class="btn waves-effect waves-light" type="submit" name="commit">Log in
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
 			<% end %>
         </div>
 	</div>
